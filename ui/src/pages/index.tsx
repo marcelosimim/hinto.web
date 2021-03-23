@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
         defaultValue={3}
         name="inputNumber"
       />
-      <p> olar </p>
+      <p> oi </p>
     </Container>
   )
 }
