@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import TesteDiv from './teste'
 
 /**
  * Representa a landing page do sistema
@@ -10,18 +9,13 @@ import TesteDiv from './teste'
 export default function LandingPage(): JSX.Element {
   return (
     <Container>
-      <div> Cabeçalho </div>
-      <TesteDiv contentProps1={'Ameno ou dorimé ???'} contentProps2={5656565} />
-      <div> rodapé </div>
+      <h1> Cabeçalho </h1>
+      <p> rodapé </p>
     </Container>
   )
 }
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;

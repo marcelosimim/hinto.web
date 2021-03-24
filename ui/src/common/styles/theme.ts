@@ -8,9 +8,20 @@
  */
 const theme = {
   colors: {
-    background: '#121214',
-    text: '#e1e1e6',
-    primary: '#8257e6'
+    mainBackground: '#101013',
+
+    mainText: '#e1e1e6',
+    redText: '#EB5757',
+
+    primary: '#4447E2',
+    secondary: '#5F5F6E',
+
+    header: '#1C1C24',
+    headerDivisor: '#262631',
+    card: '#2D2D3A'
+  },
+  zIndex: {
+    header: 1000
   }
 }
 
