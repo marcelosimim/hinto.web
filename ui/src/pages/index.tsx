@@ -1,20 +1,18 @@
-import { InputNumber } from 'antd'
 import React from 'react'
 import styled from 'styled-components'
+import TesteDiv from './teste'
 
-export default function Home(): JSX.Element {
+/**
+ * Representa a landing page do sistema
+ * @author rafaelvictor01
+ * @returns JSX.Element
+ */
+export default function LandingPage(): JSX.Element {
   return (
     <Container>
-      <h1> hoi </h1>
-      <InputNumber
-        size="large"
-        min={1}
-        max={10}
-        style={{ width: 100 }}
-        defaultValue={3}
-        name="inputNumber"
-      />
-      <p> oi </p>
+      <div> Cabeçalho </div>
+      <TesteDiv contentProps1={'Ameno ou dorimé ???'} contentProps2={5656565} />
+      <div> rodapé </div>
     </Container>
   )
 }
