@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Footer from '../common/components/footer/footer'
 import TesteDiv from './teste'
 
 /**
@@ -12,7 +13,9 @@ export default function LandingPage(): JSX.Element {
     <Container>
       <div> Cabeçalho </div>
       <TesteDiv contentProps1={'Ameno ou dorimé ???'} contentProps2={5656565} />
-      <div> rodapé </div>
+      <div>
+        <Footer></Footer>
+      </div>
     </Container>
   )
 }
