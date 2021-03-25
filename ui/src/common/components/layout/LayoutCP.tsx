@@ -15,14 +15,14 @@ interface ILayoutCPProps {
  */
 export function LayoutCP(props: ILayoutCPProps): JSX.Element {
   return (
-    <MainWrapperLayoutCP>
+    <MainWrapperLayoutSCP>
       <HeaderCP options={props.headerOptions} />
-      <ContentWrapperLayoutCP>{props.content}</ContentWrapperLayoutCP>
-    </MainWrapperLayoutCP>
+      <ContentWrapperLayoutSCP>{props.content}</ContentWrapperLayoutSCP>
+    </MainWrapperLayoutSCP>
   )
 }
 
-const MainWrapperLayoutCP = styled.div`
+const MainWrapperLayoutSCP = styled.div`
   width: 100vw;
   height: 100vw;
   display: flex;
@@ -30,7 +30,7 @@ const MainWrapperLayoutCP = styled.div`
   flex: 1 1 auto;
   padding: 70px;
 `
-const ContentWrapperLayoutCP = styled.div`
+const ContentWrapperLayoutSCP = styled.div`
   width: 100vw;
   height: 100vw;
   display: flex;

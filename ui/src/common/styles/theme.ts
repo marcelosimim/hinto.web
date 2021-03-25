@@ -10,8 +10,10 @@ const theme = {
   colors: {
     mainBackground: '#101013',
 
-    mainText: '#e1e1e6',
-    redText: '#EB5757',
+    mainTextColor: '#e1e1e6',
+    redError: '#ff4d4f',
+    greenSuccess: '#52c41a',
+    yellowAlert: '#faad14',
 
     primary: '#4447E2',
     secondary: '#5F5F6E',

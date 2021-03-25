@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-
 interface IHeaderCPProps {
   options: JSX.Element
 }
@@ -27,12 +26,12 @@ const MainWrapperHeaderCP = styled.div`
   width: 100%;
   height: 50px;
   position: fixed;
-  background-color: ${props => props.theme.colors.header};
-  border-bottom: 2px solid ${props => props.theme.colors.headerDivisor};
   top: 0;
   right: 0;
   left: 0;
   z-index: ${props => props.theme.zIndex.header};
+  background-color: ${props => props.theme.colors.header};
+  border-bottom: 2px solid ${props => props.theme.colors.headerDivisor};
 `
 const WrapperHeaderCP = styled.div`
   display: flex;
@@ -41,9 +40,9 @@ const WrapperHeaderCP = styled.div`
   align-items: center;
   padding: 0px 20px;
 `
-const LogoWrapper = styled.img``
 const OptionsWrapper = styled.div`
   padding-right: 20px;
   display: flex;
   align-items: center;
 `
+const LogoWrapper = styled.img``

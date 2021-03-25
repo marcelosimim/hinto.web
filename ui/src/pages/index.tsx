@@ -1,34 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
+import { TextCPTypesEnum } from '../common/components/text/enums/TextCPTypesEnum'
+import TextCP from '../common/components/text/TextCP'
 
 /**
  * Representa a landing page do sistema
  * @author rafaelvictor01
  * @returns JSX.Element
  */
-export default function LandingPage(): JSX.Element {
+export default function LandingScreenCP(): JSX.Element {
   return (
-    <Container>
-      <h1> Cabeçalho </h1>
-      <p> rodapé </p>
-    </Container>
+    <MainWrapperLandingScreenSCP>
+      <TextCP title={true} content={'LandingScreen'} />
+      <TextCP content={'teste'} type={TextCPTypesEnum.success} />
+    </MainWrapperLandingScreenSCP>
   )
 }
 
-const Container = styled.div`
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  h1 {
-    font-size: 54px;
-    color: ${props => props.theme.colors.primary};
-    margin-top: 40px;
-  }
-
-  p {
-    margin-top: 24px;
-    font-size: 24px;
-    line-height: 32px;
-  }
-`
+const MainWrapperLandingScreenSCP = styled.div``
