@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@next/bundle-analyzer": "^10.0.9",
     "antd": "^4.14.1",
     "next": "^10.0.9",
