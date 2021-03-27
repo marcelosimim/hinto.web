@@ -9,6 +9,9 @@ import { createGlobalStyle } from 'styled-components'
  * @author rafaelvictor01
  */
 export default createGlobalStyle`
+  width: 100vw;
+  height: 100vw;
+
   * {
     margin: 0;
     padding: 0;

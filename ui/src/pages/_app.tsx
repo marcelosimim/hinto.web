@@ -20,6 +20,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
+      <title>Hinto</title>
       <LayoutCP
         headerOptions={headerOptionsTemporary()}
         content={<Component {...pageProps} />}

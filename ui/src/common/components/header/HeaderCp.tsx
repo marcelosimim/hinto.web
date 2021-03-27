@@ -23,26 +23,20 @@ export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
 }
 
 const MainWrapperHeaderCP = styled.div`
-  width: 100%;
-  height: 50px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: ${props => props.theme.zIndex.header};
-  background-color: ${props => props.theme.colors.header};
-  border-bottom: 2px solid ${props => props.theme.colors.headerDivisor};
+  background-color: ${props => props.theme.colors.headerAndFooter};
+  border-bottom: 2px solid ${props => props.theme.colors.headerAndFooterDivisor};
+  height: ${props => props.theme.defaultSize.headerAndFooter};
+  z-index: ${props => props.theme.zIndex.headerAndFooter};
 `
 const WrapperHeaderCP = styled.div`
   display: flex;
   height: 100%;
+  min-width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 20px;
+  padding: 0 4%;
 `
 const OptionsWrapper = styled.div`
-  padding-right: 20px;
   display: flex;
-  align-items: center;
 `
 const LogoWrapper = styled.img``

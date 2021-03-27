@@ -18,12 +18,15 @@ const theme = {
     primary: '#4447E2',
     secondary: '#5F5F6E',
 
-    header: '#1C1C24',
-    headerDivisor: '#262631',
+    headerAndFooter: '#1C1C24',
+    headerAndFooterDivisor: '#262631',
     card: '#2D2D3A'
   },
   zIndex: {
-    header: 1000
+    headerAndFooter: 1000
+  },
+  defaultSize: {
+    headerAndFooter: '50px'
   }
 }
 

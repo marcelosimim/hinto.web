@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import HeaderCP from '../header/HeaderCp'
+import FooterCP from '../footer/FooterCP'
+import HeaderCP from '../header/HeaderCP'
 
 interface ILayoutCPProps {
   content: JSX.Element
@@ -18,23 +19,17 @@ export function LayoutCP(props: ILayoutCPProps): JSX.Element {
     <MainWrapperLayoutSCP>
       <HeaderCP options={props.headerOptions} />
       <ContentWrapperLayoutSCP>{props.content}</ContentWrapperLayoutSCP>
+      <FooterCP />
     </MainWrapperLayoutSCP>
   )
 }
 
 const MainWrapperLayoutSCP = styled.div`
-  width: 100vw;
-  height: 100vw;
   display: flex;
-  justify-content: flex-start;
-  flex: 1 1 auto;
-  padding: 70px;
+  flex-direction: column;
+  height: 100vmin;
 `
 const ContentWrapperLayoutSCP = styled.div`
-  width: 100vw;
-  height: 100vw;
-  display: flex;
-  justify-content: flex-start;
-  flex: 1 1 auto;
-  padding: 70px;
+  height: 100vmin;
+  padding: 25px;
 `
