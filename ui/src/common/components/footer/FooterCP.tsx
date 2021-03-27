@@ -7,6 +7,7 @@ import {
 import React from 'react'
 import styled from 'styled-components'
 import theme from '../../styles/theme'
+import { TextCPTypesEnum } from '../text/enums/TextCPTypesEnum'
 import TextCP from '../text/TextCP'
 
 /**
@@ -29,8 +30,14 @@ export default function FooterCP(): JSX.Element {
           style={{ fontSize: '18px', color: `${theme.colors.secondary}` }}
         />
       </ColWrapperSCP>
-      <TextCP content={'© 2021 - All rights licensed'} />
-      <TextCP content={'For student purposes'} />
+      <TextCP
+        content={'© 2021 - All rights licensed'}
+        type={TextCPTypesEnum.secondary}
+      />
+      <TextCP
+        content={'For student purposes'}
+        type={TextCPTypesEnum.secondary}
+      />
     </MainWrapperFooterSCP>
   )
 }

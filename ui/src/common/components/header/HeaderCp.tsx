@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import HeaderOptionsWithoutLoginCP from './inner/HeaderOptionsWithoutLoginICP'
 interface IHeaderCPProps {
-  options: JSX.Element
+  currentRoute: string
 }
 
 /**
@@ -16,7 +17,15 @@ export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
     <MainWrapperHeaderCP>
       <WrapperHeaderCP>
         <LogoWrapper></LogoWrapper>
-        <OptionsWrapper>{props.options}</OptionsWrapper>
+        <OptionsWrapper>
+          {props.currentRoute === '/' ||
+          props.currentRoute === '/login' ||
+          props.currentRoute === '/cadastro' ? (
+            <HeaderOptionsWithoutLoginCP />
+          ) : (
+            <>aqui é dentro do sistema</>
+          )}
+        </OptionsWrapper>
       </WrapperHeaderCP>
     </MainWrapperHeaderCP>
   )

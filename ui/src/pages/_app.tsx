@@ -1,31 +1,29 @@
 import { AppProps } from 'next/app'
+import { useRouter } from 'next/dist/client/router'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { LayoutCP } from '../common/components/layout/LayoutCP'
 import GlobalStyle from '../common/styles/global'
 import theme from '../common/styles/theme'
+import { CommonUtils } from '../common/utils/CommonUtils'
 
 /**
  * @param AppProps
- * @returns JSX.Element
+ * @returns { JSX.Element }
  * @author rafaelvictor01
  *
  * @todo add description
- * @todo abstrair os headerOptions
  */
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  function headerOptionsTemporary(): JSX.Element {
-    return <div>options</div>
-  }
-
+  const router = useRouter()
   return (
     <ThemeProvider theme={theme}>
-      <title>Hinto</title>
+      <title>{CommonUtils.getTextForTitle(router.route)}</title>
+      <GlobalStyle />
       <LayoutCP
-        headerOptions={headerOptionsTemporary()}
+        currentRoute={router.route}
         content={<Component {...pageProps} />}
       />
-      <GlobalStyle />
     </ThemeProvider>
   )
 }

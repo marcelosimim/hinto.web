@@ -5,19 +5,19 @@ import HeaderCP from '../header/HeaderCP'
 
 interface ILayoutCPProps {
   content: JSX.Element
-  headerOptions: JSX.Element
+  currentRoute: string
 }
 
 /**
  * Componente usado para abstrair a criação de todas as telas do sistema
  * @param props ILayoutCPProps
- * @returns JSX.Element
+ * @returns { JSX.Element }
  * @author rafaelvictor01
  */
 export function LayoutCP(props: ILayoutCPProps): JSX.Element {
   return (
     <MainWrapperLayoutSCP>
-      <HeaderCP options={props.headerOptions} />
+      <HeaderCP currentRoute={props.currentRoute} />
       <ContentWrapperLayoutSCP>{props.content}</ContentWrapperLayoutSCP>
       <FooterCP />
     </MainWrapperLayoutSCP>
