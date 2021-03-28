@@ -11,7 +11,7 @@ interface ILayoutCPProps {
 /**
  * Componente usado para abstrair a criação de todas as telas do sistema
  * @param props ILayoutCPProps
- * @returns { JSX.Element }
+ * @returns JSX.Element
  * @author rafaelvictor01
  */
 export function LayoutCP(props: ILayoutCPProps): JSX.Element {

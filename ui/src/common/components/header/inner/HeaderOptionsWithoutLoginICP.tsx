@@ -1,32 +1,24 @@
-import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
-import TextCP from '../../text/TextCP'
+import { SystemRoutes } from '../../../routes/SystemRoutes'
+import { TextForHeaderItemsEnum } from '../enums/TextForHeaderItemsEnum'
+import HeaderOptionICP from './HeaderOptionICP'
 
 export default function HeaderOptionsWithoutLoginCP(): JSX.Element {
   return (
     <HeaderOptionsSCP>
-      <ColWrapperSCP>
-        <Link href={'/'}>
-          <a>
-            <TextCP content={'Sobre nós'} />
-          </a>
-        </Link>
-      </ColWrapperSCP>
-      <ColWrapperSCP>
-        <Link href={'/login'}>
-          <a>
-            <TextCP content={'Login'} />
-          </a>
-        </Link>
-      </ColWrapperSCP>
-      <ColWrapperSCP>
-        <Link href={'/cadastro'}>
-          <a>
-            <TextCP content={'Cadastre-se'} />
-          </a>
-        </Link>
-      </ColWrapperSCP>
+      <HeaderOptionICP
+        href={SystemRoutes.routeToLandingScreen}
+        text={TextForHeaderItemsEnum.textToLandingScreen}
+      />
+      <HeaderOptionICP
+        href={SystemRoutes.routeToLoginScreen}
+        text={TextForHeaderItemsEnum.textToLoginScreen}
+      />
+      <HeaderOptionICP
+        href={SystemRoutes.routeToRegisterScreen}
+        text={TextForHeaderItemsEnum.textToRegisterScreen}
+      />
     </HeaderOptionsSCP>
   )
 }
@@ -34,8 +26,4 @@ export default function HeaderOptionsWithoutLoginCP(): JSX.Element {
 const HeaderOptionsSCP = styled.div`
   display: flex;
   flex-direction: row;
-`
-const ColWrapperSCP = styled.div`
-  display: flex;
-  padding: 10px;
 `

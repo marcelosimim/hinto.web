@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { SystemRoutes } from '../../routes/SystemRoutes'
 import HeaderOptionsWithoutLoginCP from './inner/HeaderOptionsWithoutLoginICP'
+
 interface IHeaderCPProps {
   currentRoute: string
 }
@@ -11,20 +13,31 @@ interface IHeaderCPProps {
  * @returns JSX.Element
  * @author rafaelvictor01
  * @todo implementar a logo
+ * @todo implementar a forma como serão as options dentro do sistema
  */
 export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
+  const [
+    enableHeaderOptionsWithoutLogin,
+    setEnableHeaderOptionsWithoutLogin
+  ] = useState(false)
+
+  useEffect(checkCurrentRoute, [props.currentRoute])
+
+  function checkCurrentRoute(): void {
+    setEnableHeaderOptionsWithoutLogin(
+      props.currentRoute === SystemRoutes.routeToLandingScreen ||
+        props.currentRoute === SystemRoutes.routeToLoginScreen ||
+        props.currentRoute === SystemRoutes.routeToRegisterScreen
+    )
+  }
+
   return (
     <MainWrapperHeaderCP>
       <WrapperHeaderCP>
         <LogoWrapper></LogoWrapper>
         <OptionsWrapper>
-          {props.currentRoute === '/' ||
-          props.currentRoute === '/login' ||
-          props.currentRoute === '/cadastro' ? (
-            <HeaderOptionsWithoutLoginCP />
-          ) : (
-            <>aqui é dentro do sistema</>
-          )}
+          {enableHeaderOptionsWithoutLogin && <HeaderOptionsWithoutLoginCP />}
+          {!enableHeaderOptionsWithoutLogin && <>aqui é dentro do sistema</>}
         </OptionsWrapper>
       </WrapperHeaderCP>
     </MainWrapperHeaderCP>
