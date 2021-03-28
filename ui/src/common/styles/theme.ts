@@ -27,6 +27,9 @@ const theme = {
   },
   defaultSize: {
     headerAndFooter: '50px'
+  },
+  other: {
+    defaultBorderRadius: '9px'
   }
 }
 
