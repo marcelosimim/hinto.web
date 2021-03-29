@@ -28,9 +28,9 @@ export default function CardCP(props: ICardCPProps): JSX.Element {
 }
 
 const MainWrapperCardSCP = styled.div`
-  .ant-card-body {
-    margin: 15px;
-    padding: 20px;
+  .ant-card {
+    padding: 0;
+    border: none;
     border-radius: ${props => props.theme.other.defaultBorderRadius};
     background-color: ${props => props.theme.colors.card};
   }

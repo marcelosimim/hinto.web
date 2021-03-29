@@ -1,9 +1,15 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import React from 'react'
+import styled from 'styled-components'
+import DatepickerCP from '../../../common/components/fields/datepicker/DatepickerCP'
+import SubmitButtonCP from '../../../common/components/fields/submit-button/SubmitButtonCP'
+import TextInputCP from '../../../common/components/fields/text-input/TextInputCP'
 import { LoginFormValidator } from './validators/LoginFormValidator'
 
+const INITIAL_VALUES = { email: '', password: '', birthDate: '' }
+
 export default function LoginFormCP(): JSX.Element {
-  function onSubmitForm(values, actions): void {
+  function onSubmitForm(values): void {
     console.log('onSubmit', values)
   }
 
@@ -12,22 +18,43 @@ export default function LoginFormCP(): JSX.Element {
       validateOnMount
       onSubmit={onSubmitForm}
       validationSchema={LoginFormValidator}
-      initialValues={{
-        email: '',
-        password: ''
-      }}
+      initialValues={INITIAL_VALUES}
     >
-      {({ values, handleSubmit, errors, isValid }) => (
+      {({ values, handleChange, handleBlur }) => (
         <Form>
-          <Field name={'email'} type={'email'} />
-          <ErrorMessage name={'email'} />
-          <Field name={'password'} type={'password'} />
-          <ErrorMessage name={'password'} />
-          <button type={'submit'} disabled={!isValid}>
-            Enviar
-          </button>
+          <ContentWrapperLoginFormSCP>
+            <TextInputCP
+              name={'email'}
+              type={'email'}
+              label={'E-mail'}
+              isRequired={true}
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <TextInputCP
+              name={'password'}
+              type={'password'}
+              label={'Password'}
+              isRequired={true}
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <DatepickerCP
+              name={'birthDate'}
+              label={'Data de nascimento'}
+              isRequired={true}
+            />
+            <SubmitButtonCP textButton={'Entrar'} />
+          </ContentWrapperLoginFormSCP>
         </Form>
       )}
     </Formik>
   )
 }
+
+const ContentWrapperLoginFormSCP = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+`

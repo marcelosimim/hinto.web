@@ -6,6 +6,7 @@ import * as Yup from 'yup'
  * @author rafaelvictor01
  */
 export const LoginFormValidator = Yup.object().shape({
-  email: Yup.string().email('E-mail inválido').required('Informe um e-mail'),
-  password: Yup.string().required('Informe uma senha')
+  email: Yup.string().email().required(),
+  password: Yup.string().required(),
+  birthDate: Yup.date()
 })

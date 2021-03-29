@@ -26,10 +26,11 @@ const theme = {
     headerAndFooter: 1000
   },
   defaultSize: {
-    headerAndFooter: '50px'
+    headerAndFooter: '50px',
+    inputFieldHeight: '50px'
   },
   other: {
-    defaultBorderRadius: '9px'
+    defaultBorderRadius: '15px'
   }
 }
 

@@ -6,6 +6,9 @@ import { LayoutCP } from '../common/components/layout/LayoutCP'
 import GlobalStyle from '../common/styles/global'
 import theme from '../common/styles/theme'
 import { CommonUtils } from '../common/utils/CommonUtils'
+import { ConfigProvider } from 'antd'
+import ptBR from 'antd/lib/locale-provider/pt_BR'
+import '../common/styles/antd.less'
 
 /**
  * @param AppProps
@@ -18,12 +21,14 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter()
   return (
     <ThemeProvider theme={theme}>
-      <title>{CommonUtils.getTextForTitle(router.route)}</title>
-      <GlobalStyle />
-      <LayoutCP
-        currentRoute={router.route}
-        content={<Component {...pageProps} />}
-      />
+      <ConfigProvider locale={ptBR}>
+        <title>{CommonUtils.getTextForTitle(router.route)}</title>
+        <GlobalStyle />
+        <LayoutCP
+          currentRoute={router.route}
+          content={<Component {...pageProps} />}
+        />
+      </ConfigProvider>
     </ThemeProvider>
   )
 }
