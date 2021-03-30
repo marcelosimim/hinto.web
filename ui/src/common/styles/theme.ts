@@ -8,9 +8,29 @@
  */
 const theme = {
   colors: {
-    background: '#121214',
-    text: '#e1e1e6',
-    primary: '#8257e6'
+    mainBackground: '#101013',
+
+    mainTextColor: '#e1e1e6',
+    redError: '#ff4d4f',
+    greenSuccess: '#52c41a',
+    yellowAlert: '#faad14',
+
+    primary: '#4447E2',
+    secondary: '#5F5F6E',
+
+    headerAndFooter: '#1C1C24',
+    headerAndFooterDivisor: '#262631',
+    card: '#2D2D3A'
+  },
+  zIndex: {
+    headerAndFooter: 1000
+  },
+  defaultSize: {
+    headerAndFooter: '50px',
+    inputFieldHeight: '50px'
+  },
+  other: {
+    defaultBorderRadius: '15px'
   }
 }
 

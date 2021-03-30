@@ -1,43 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
-import Footer from '../common/components/footer/footer'
-import TesteDiv from './teste'
+import { TextCPTypesEnum } from '../common/components/text/enums/TextCPTypesEnum'
+import TextCP from '../common/components/text/TextCP'
 
 /**
  * Representa a landing page do sistema
  * @author rafaelvictor01
  * @returns JSX.Element
  */
-export default function LandingPage(): JSX.Element {
+export default function LandingScreenCP(): JSX.Element {
   return (
-    <Container>
-      <div> Cabeçalho </div>
-      <TesteDiv contentProps1={'Ameno ou dorimé ???'} contentProps2={5656565} />
-      <div>
-        <Footer></Footer>
-      </div>
-    </Container>
+    <MainWrapperLandingScreenSCP>
+      <TextCP title={true} content={'LandingScreen'} />
+      <TextCP content={'teste'} type={TextCPTypesEnum.success} />
+    </MainWrapperLandingScreenSCP>
   )
 }
 
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  h1 {
-    font-size: 54px;
-    color: ${props => props.theme.colors.primary};
-    margin-top: 40px;
-  }
-
-  p {
-    margin-top: 24px;
-    font-size: 24px;
-    line-height: 32px;
-  }
-`
+const MainWrapperLandingScreenSCP = styled.div``
