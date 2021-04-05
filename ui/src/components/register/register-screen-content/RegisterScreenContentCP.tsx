@@ -3,17 +3,18 @@ import React from 'react'
 import styled from 'styled-components'
 import LoginImageSRC from '../../../assets/LoginImage.svg'
 import CardCP from '../../../common/components/card/CardCP'
-import { TextCPTypesEnum } from '../../../common/components/text/enums/TextCPTypesEnum'
-import TextCP from '../../../common/components/text/TextCP'
+import HintoTextCP from '../../../common/components/hinto-text/HintoTextCP'
 import RegisterFormCP from '../register-form/RegisterFormCP'
 
+/**
+ * Conteúdo da tela de cadastro do sistema
+ * @author marcelosimim
+ * @returns JSX.Element
+ */
 export default function RegisterScreenContentCP(): JSX.Element {
   return (
     <MainWrapperRegisterScreenContentSCP>
-      <TextWrapperSCP>
-        <TextCP content={'Hinto'} />
-        <TextCP content={'ヒント'} type={TextCPTypesEnum.secondary} />
-      </TextWrapperSCP>
+      <HintoTextCP />
       <ContentWrapperSCP>
         <CardCP style={{ width: '500px' }}>
           <ContentCardWrapperSCP>
@@ -24,7 +25,7 @@ export default function RegisterScreenContentCP(): JSX.Element {
               height={150}
               className={'login-image'}
             />
-            <RegisterFormCP></RegisterFormCP>
+            <RegisterFormCP />
           </ContentCardWrapperSCP>
         </CardCP>
       </ContentWrapperSCP>
@@ -37,17 +38,6 @@ const MainWrapperRegisterScreenContentSCP = styled.div`
   flex-direction: column;
   justify-content: center;
 `
-
-const TextWrapperSCP = styled.div`
-  display: flex;
-  align-self: center;
-  width: 500px;
-  margin: 150px 15px 15px 15px;
-  font-size: 54px;
-  justify-content: space-between;
-  padding: 20px;
-`
-
 const ContentWrapperSCP = styled.div`
   display: flex;
   justify-content: center;

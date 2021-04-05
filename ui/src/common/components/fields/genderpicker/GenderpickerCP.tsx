@@ -19,37 +19,24 @@ export default function GenderpickerCP(
   props: IGenderpickerCPProps
 ): JSX.Element {
   return (
-    <MainWrapperGenderpickerSCP>
+    <MainWrapperGenderPickerSCP>
       <TextInputLabelICP label={props.label} isRequired={props.isRequired} />
-      <Select className="ant-select-selection" style={{ width: 120 }}>
-        <Option value="male" style={{ width: 120 }}>
-          Masculino
-        </Option>
-        <Option value="female" style={{ width: 120 }}>
-          Feminino
-        </Option>
-        <Option value="another" style={{ width: 120 }}>
-          Outro
-        </Option>
+      <Select>
+        <Option value="male">Masculino</Option>
+        <Option value="female">Feminino</Option>
+        <Option value="another">Outro</Option>
       </Select>
-    </MainWrapperGenderpickerSCP>
+    </MainWrapperGenderPickerSCP>
   )
 }
 
-const MainWrapperGenderpickerSCP = styled.div`
+const MainWrapperGenderPickerSCP = styled.div`
   display: grid;
   margin-bottom: 10px;
-
-  .ant-select {
-    color: ${props => props.theme.colors.mainTextColor};
-  }
-
   .ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    background-color: ${props => props.theme.colors.mainBackground};
     margin-top: 10px;
-    margin-bottom: 10px;
     border: none;
+    background-color: ${props => props.theme.colors.mainBackground};
+    height: ${props => props.theme.defaultSize.inputFieldHeight};
   }
 `
-
-// height: ${props => props.theme.defaultSize.inputFieldHeight};
