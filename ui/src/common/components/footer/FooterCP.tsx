@@ -13,7 +13,7 @@ import TextCP from '../text/TextCP'
  * Responsável por renderizar o componente com o footer principal do sistema.
  * @author rafaelvictor01
  * @author marcelosimim
- * @returns { JSX.Element }
+ * @returns JSX.Element
  */
 export default function FooterCP(): JSX.Element {
   return (
