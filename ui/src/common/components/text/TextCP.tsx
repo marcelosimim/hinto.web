@@ -1,7 +1,7 @@
-import React from 'react'
 import { Typography } from 'antd'
-import { TextCPTypesEnum } from './enums/TextCPTypesEnum'
+import React from 'react'
 import styled from 'styled-components'
+import { TextCPTypesEnum } from './enums/TextCPTypesEnum'
 
 interface ITextCPProps {
   content: string

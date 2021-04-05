@@ -1,15 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TextCPTypesEnum } from '../common/components/text/enums/TextCPTypesEnum'
-import TextCP from '../common/components/text/TextCP'
+import RegisterScreenContentCPs from '../components/register/register-screen-content/RegisterScreenContentCP'
 
 export default function RegisterScreenCP(): JSX.Element {
   return (
     <MainWrapperRegisterScreenSCP>
-      <TextCP title={true} content={'RegisterScreen'} />
-      <TextCP content={'teste'} type={TextCPTypesEnum.secondary} />
+      <RegisterScreenContentCPs />
     </MainWrapperRegisterScreenSCP>
   )
 }
 
-const MainWrapperRegisterScreenSCP = styled.div``
+const MainWrapperRegisterScreenSCP = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vmin;
+  margin-bottom: 5000px;
+`
