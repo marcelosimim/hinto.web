@@ -13,7 +13,7 @@ const MOCK: ILandingScreenResponseDTO[] = LandingScreenContentMock
 /**
  * Conteúdo da tela de apresentação do sistema
  *
- * @todo Abstrair o componente Meta para não usar nada do antd diretamente aqui - Baixo impacto pra muito esforço... deixar pra depois
+ * @todo Abstrair os componentes Col e Row para não usar nada do antd diretamente aqui - Baixo impacto pra muito esforço... deixar pra depois
  *
  * @author rafaelvictor01
  * @returns JSX.Element
