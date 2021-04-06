@@ -5,6 +5,8 @@ import styled from 'styled-components'
 interface ICardCPProps {
   children: JSX.Element | string
   style?: React.CSSProperties
+  hoverable?: boolean
+  cover?: JSX.Element
 }
 
 /**
@@ -22,7 +24,9 @@ interface ICardCPProps {
 export default function CardCP(props: ICardCPProps): JSX.Element {
   return (
     <MainWrapperCardSCP>
-      <Card style={props.style}>{props.children}</Card>
+      <Card style={props.style} hoverable={props.hoverable} cover={props.cover}>
+        {props.children}
+      </Card>
     </MainWrapperCardSCP>
   )
 }

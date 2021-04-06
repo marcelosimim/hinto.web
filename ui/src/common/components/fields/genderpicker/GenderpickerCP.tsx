@@ -15,6 +15,9 @@ interface IGenderpickerCPProps {
   // onChange?: (date: moment.Moment, dateString: string) => void
 }
 
+/**
+ * @todo add descrição (Marcelo Simim)
+ */
 export default function GenderpickerCP(
   props: IGenderpickerCPProps
 ): JSX.Element {
@@ -38,5 +41,8 @@ const MainWrapperGenderPickerSCP = styled.div`
     border: none;
     background-color: ${props => props.theme.colors.mainBackground};
     height: ${props => props.theme.defaultSize.inputFieldHeight};
+  }
+  .ant-select-selection-item {
+    align-self: center;
   }
 `

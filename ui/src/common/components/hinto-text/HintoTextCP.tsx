@@ -20,9 +20,8 @@ export default function HintoTextCP(): JSX.Element {
 const TextWrapperSCP = styled.div`
   display: flex;
   align-self: center;
-  width: 500px;
+  min-width: 500px;
   margin: 15px;
   font-size: 54px;
   justify-content: space-between;
-  padding: 20px;
 `
