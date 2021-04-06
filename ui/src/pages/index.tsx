@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TextCPTypesEnum } from '../common/components/text/enums/TextCPTypesEnum'
-import TextCP from '../common/components/text/TextCP'
+import LandingScreenContentCP from '../components/landing/landing-screen-content/LandingScreenContentCP'
 
 /**
  * Representa a landing page do sistema
@@ -11,8 +10,7 @@ import TextCP from '../common/components/text/TextCP'
 export default function LandingScreenCP(): JSX.Element {
   return (
     <MainWrapperLandingScreenSCP>
-      <TextCP title={true} content={'LandingScreen'} />
-      <TextCP content={'teste'} type={TextCPTypesEnum.success} />
+      <LandingScreenContentCP />
     </MainWrapperLandingScreenSCP>
   )
 }
