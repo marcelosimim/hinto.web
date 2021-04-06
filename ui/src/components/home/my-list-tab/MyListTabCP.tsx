@@ -39,7 +39,7 @@ export default function MyListTabCP(): JSX.Element {
 
   return (
     <MainWrapperMyListTabSCP>
-      <Row gutter={20} justify={'center'}>
+      <Row gutter={[20, 20]} justify={'center'}>
         {listOfCards}
       </Row>
       <PaginationCP
