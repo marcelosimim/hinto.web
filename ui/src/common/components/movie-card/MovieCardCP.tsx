@@ -8,8 +8,11 @@ interface IMovieCardCPProps {
   urlImage: string
   movieTitle: string
   synopsis: string
+  movieID?: number
+  enablePreview?: boolean
   cardStyle?: React.CSSProperties
   imageStyle?: React.CSSProperties
+  onClick?: (movieID: number) => void
 }
 
 /**
@@ -22,16 +25,24 @@ interface IMovieCardCPProps {
  * @returns JSX.Element
  */
 export default function MovieCardCP(props: IMovieCardCPProps): JSX.Element {
+  function onClickMainWrapperLandingCard(): void {
+    if (props.onClick && props.movieID) {
+      props.onClick(props.movieID)
+    }
+  }
+
   return (
     <MainWrapperLandingCardSCP>
       <CardCP
         hoverable={true}
         style={props.cardStyle}
+        onClick={onClickMainWrapperLandingCard}
         cover={
           <Image
             style={props.imageStyle}
             src={props.urlImage}
             alt={`${props.movieTitle}-img`}
+            preview={props.enablePreview}
           />
         }
       >

@@ -4,7 +4,9 @@ import MovieCardCP from '../../../common/components/movie-card/MovieCardCP'
 interface IHomeCardCPProps {
   urlImage: string
   movieTitle: string
+  movieID: number
   synopsis: string
+  onClick: (movieID: number) => void
 }
 
 /**
@@ -18,8 +20,11 @@ export default function HomeCardCP(props: IHomeCardCPProps): JSX.Element {
       movieTitle={props.movieTitle}
       synopsis={props.synopsis}
       urlImage={props.urlImage}
-      imageStyle={{ height: '320px', width: '280px' }}
-      cardStyle={{ height: '470px', width: '280px' }}
+      movieID={props.movieID}
+      onClick={props.onClick}
+      enablePreview={false}
+      imageStyle={{ height: '350px', width: '340px' }}
+      cardStyle={{ height: '520px', width: '340px' }}
     />
   )
 }

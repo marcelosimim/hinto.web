@@ -8,15 +8,22 @@ interface IPaginationCPProps {
   onChange: (currentPage: number) => void
 }
 
+/**
+ * Componente de paginação abstraído do antd
+ * @see https://ant.design/components/pagination/
+ * @author rafaelvictor01
+ * @param props IPaginationCPProps
+ * @returns JSX.Element
+ */
 export default function PaginationCP(props: IPaginationCPProps): JSX.Element {
   return (
     <MainWrapperPaginationSCP>
       <Pagination
+        total={props.total}
+        showQuickJumper={false}
+        showSizeChanger={false}
         onChange={props.onChange}
         pageSize={props.pageSize}
-        total={props.total}
-        showSizeChanger={false}
-        showQuickJumper={false}
       />
     </MainWrapperPaginationSCP>
   )

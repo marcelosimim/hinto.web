@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import TabsCP from '../../../common/components/tabs/TabsCP'
-import { TABS } from './inner/HomeScreenContentTabsICP'
+import { HomeScreenContentTabsICP } from './inner/HomeScreenContentTabsICP'
 
 export default function HomeScreenContentCP(): JSX.Element {
   return (
     <MainWrapperHomeScreenContentSCP>
-      <TabsCP defaultActiveKey={'1'}>{TABS}</TabsCP>
+      <TabsCP defaultActiveKey={'1'} tabs={HomeScreenContentTabsICP} />
     </MainWrapperHomeScreenContentSCP>
   )
 }

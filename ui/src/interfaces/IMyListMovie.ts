@@ -7,4 +7,5 @@ export interface IMyListMovie {
   title: string
   synopsis: string
   urlImage: string
+  id: number
 }

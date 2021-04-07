@@ -3,7 +3,7 @@ import { Tabs } from 'antd'
 import { ITabsChildren } from './interfaces/ITabsChildren'
 
 interface ITabsCPProps {
-  children: ITabsChildren[]
+  tabs: ITabsChildren[]
   defaultActiveKey?: string
 }
 
@@ -23,7 +23,7 @@ export default function TabsCP(props: ITabsCPProps): JSX.Element {
 
   function whenRender(): void {
     setTabItens(
-      props.children.map((currentChildren, index) => (
+      props.tabs.map((currentChildren, index) => (
         <TabPane tab={currentChildren.tabName} key={`${index}`}>
           {currentChildren.tabContent}
         </TabPane>

@@ -2,7 +2,7 @@ import React from 'react'
 import { ITabsChildren } from '../../../../common/components/tabs/interfaces/ITabsChildren'
 import MyListTabCP from '../../my-list-tab/MyListTabCP'
 
-export const TABS: ITabsChildren[] = [
+export const HomeScreenContentTabsICP: ITabsChildren[] = [
   {
     tabName: 'MINHA LISTA',
     tabContent: <MyListTabCP />
