@@ -22,7 +22,7 @@ export default function LandingScreenContentCP(): JSX.Element {
   return (
     <MainWrapperLandingScreenContentSCP>
       <LandingTopTextCP />
-      <Row gutter={16} justify={'center'}>
+      <Row gutter={[16, 16]} justify={'center'}>
         <Col className={'gutter-row'} span={7}>
           <LandingCardCP
             main={true}
@@ -46,7 +46,7 @@ export default function LandingScreenContentCP(): JSX.Element {
               </Row>
             </Col>
           </Row>
-          <Row gutter={16} justify={'space-between'}>
+          <Row gutter={[16, 16]} justify={'space-between'}>
             <Col className={'gutter-row'}>
               <LandingCardCP
                 synopsis={MOCK[1].synopsis}

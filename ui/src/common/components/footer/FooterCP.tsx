@@ -18,39 +18,43 @@ import TextCP from '../text/TextCP'
 export default function FooterCP(): JSX.Element {
   return (
     <MainWrapperFooterSCP>
-      <ColWrapperSCP>
-        <TwitterOutlined
-          style={{ fontSize: '18px', color: `${theme.colors.secondary}` }}
+      <ContentFooterWrapperSCP>
+        <ColWrapperSCP>
+          <TwitterOutlined
+            style={{ fontSize: '18px', color: `${theme.colors.secondary}` }}
+          />
+          <AppleOutlined
+            style={{ fontSize: '18px', color: `${theme.colors.secondary}` }}
+          />
+          <AndroidOutlined
+            style={{ fontSize: '18px', color: `${theme.colors.secondary}` }}
+          />
+        </ColWrapperSCP>
+        <TextCP
+          content={'© 2021 - All rights licensed'}
+          type={TextCPTypesEnum.secondary}
         />
-        <AppleOutlined
-          style={{ fontSize: '18px', color: `${theme.colors.secondary}` }}
+        <TextCP
+          content={'For student purposes'}
+          type={TextCPTypesEnum.secondary}
         />
-        <AndroidOutlined
-          style={{ fontSize: '18px', color: `${theme.colors.secondary}` }}
-        />
-      </ColWrapperSCP>
-      <TextCP
-        content={'© 2021 - All rights licensed'}
-        type={TextCPTypesEnum.secondary}
-      />
-      <TextCP
-        content={'For student purposes'}
-        type={TextCPTypesEnum.secondary}
-      />
+      </ContentFooterWrapperSCP>
     </MainWrapperFooterSCP>
   )
 }
 
-const MainWrapperFooterSCP = styled.div`
-  width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 4%;
-  align-items: center;
+const MainWrapperFooterSCP = styled.footer`
+  flex-shrink: 0;
   z-index: ${props => props.theme.zIndex.headerAndFooter};
-  height: ${props => props.theme.defaultSize.headerAndFooter};
   background-color: ${props => props.theme.colors.headerAndFooter};
   border-top: 2px solid ${props => props.theme.colors.headerAndFooterDivisor};
+`
+const ContentFooterWrapperSCP = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 4%;
+  justify-content: space-between;
+  height: ${props => props.theme.defaultSize.headerAndFooter};
 `
 const ColWrapperSCP = styled.div`
   display: flex;
