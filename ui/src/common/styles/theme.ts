@@ -8,7 +8,7 @@
  */
 const theme = {
   colors: {
-    mainBackground: '#101013',
+    mainBackground: '#101012',
 
     mainTextColor: '#e1e1e6',
     redError: '#ff4d4f',

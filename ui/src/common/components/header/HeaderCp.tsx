@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { SystemRoutes } from '../../routes/SystemRoutes'
+import HeaderOptionsForUsersICP from './inner/HeaderOptionsForUsersICP'
 import HeaderOptionsWithoutLoginCP from './inner/HeaderOptionsWithoutLoginICP'
 
 interface IHeaderCPProps {
@@ -31,13 +32,26 @@ export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
     )
   }
 
+  function openProfileDrawer(): void {
+    console.log('open profile drawer')
+  }
+
+  function onClickExit(): void {
+    console.log('exit')
+  }
+
   return (
     <MainWrapperHeaderCP>
       <WrapperHeaderCP>
         <LogoWrapper></LogoWrapper>
         <OptionsWrapper>
           {enableHeaderOptionsWithoutLogin && <HeaderOptionsWithoutLoginCP />}
-          {!enableHeaderOptionsWithoutLogin && <>aqui é dentro do sistema</>}
+          {!enableHeaderOptionsWithoutLogin && (
+            <HeaderOptionsForUsersICP
+              onClickExit={onClickExit}
+              onClickShowProfile={openProfileDrawer}
+            />
+          )}
         </OptionsWrapper>
       </WrapperHeaderCP>
     </MainWrapperHeaderCP>
