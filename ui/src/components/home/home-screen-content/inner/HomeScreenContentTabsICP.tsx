@@ -1,6 +1,7 @@
 import React from 'react'
 import { ITabsChildren } from '../../../../common/components/tabs/interfaces/ITabsChildren'
 import MyListTabCP from '../../my-list-tab/MyListTabCP'
+import SearchTabCP from '../../search-tab/SearchTabCP'
 
 export const HomeScreenContentTabsICP: ITabsChildren[] = [
   {
@@ -9,7 +10,7 @@ export const HomeScreenContentTabsICP: ITabsChildren[] = [
   },
   {
     tabName: 'PESQUISAR',
-    tabContent: <>PESQUISAR</>
+    tabContent: <SearchTabCP />
   },
   {
     tabName: 'RECOMENDADOS',

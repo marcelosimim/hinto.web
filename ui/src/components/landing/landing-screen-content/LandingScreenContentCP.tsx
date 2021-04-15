@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Col, Row } from 'antd'
 import TextCP from '../../../common/components/text/TextCP'
 import HintoTextCP from '../../../common/components/hinto-text/HintoTextCP'
 import LandingCardCP from '../landing-card/LandingCardCP'
@@ -21,56 +20,54 @@ const MOCK: ILandingScreenResponseDTO[] = LandingScreenContentMock
 export default function LandingScreenContentCP(): JSX.Element {
   return (
     <MainWrapperLandingScreenContentSCP>
-      <LandingTopTextCP />
-      <Row gutter={[16, 16]} justify={'center'}>
-        <Col className={'gutter-row'} span={7}>
-          <LandingCardCP
-            main={true}
-            synopsis={MOCK[0].synopsis}
-            movieTitle={MOCK[0].movieTitle}
-            urlImage={MOCK[0].urlImage}
+      <LandingTopTextSCP>
+        <LandingTopTextCP />
+      </LandingTopTextSCP>
+
+      <MainCardWrapperSCP>
+        <LandingCardCP
+          main={true}
+          synopsis={MOCK[0].synopsis}
+          movieTitle={MOCK[0].movieTitle}
+          urlImage={MOCK[0].urlImage}
+        />
+      </MainCardWrapperSCP>
+
+      <RightWrapperAreaSCP>
+        <HintoTextSCP>
+          <HintoTextCP />
+        </HintoTextSCP>
+
+        <BottomTextWrapperSCP>
+          <TextCP
+            content={
+              'Gosta de filmes, séries e animes? Vem criar com a gente sua própria biblioteca com ' +
+              'tudo isso! Na Hinto vamos te ajudar a tomar as melhores decisões para o meu momento ' +
+              'de lazer ser cada vez melhor!'
+            }
           />
-        </Col>
-        <Col className={'gutter-row'} span={14}>
-          <Row justify={'center'}>
-            <Col>
-              <HintoTextCP />
-              <Row>
-                <BottomTextWrapperSCP>
-                  <TextCP
-                    content={
-                      'Gosta de filmes, séries e animes? Vem criar com a gente sua própria biblioteca com tudo isso! Na Hinto vamos te ajudar a tomar as melhores decisões para o meu momento de lazer ser cada vez melhor!'
-                    }
-                  />
-                </BottomTextWrapperSCP>
-              </Row>
-            </Col>
-          </Row>
-          <Row gutter={[16, 16]} justify={'space-between'}>
-            <Col className={'gutter-row'}>
-              <LandingCardCP
-                synopsis={MOCK[1].synopsis}
-                movieTitle={MOCK[1].movieTitle}
-                urlImage={MOCK[1].urlImage}
-              />
-            </Col>
-            <Col className={'gutter-row'}>
-              <LandingCardCP
-                synopsis={MOCK[2].synopsis}
-                movieTitle={MOCK[2].movieTitle}
-                urlImage={MOCK[2].urlImage}
-              />
-            </Col>
-            <Col className={'gutter-row'}>
-              <LandingCardCP
-                synopsis={MOCK[3].synopsis}
-                movieTitle={MOCK[3].movieTitle}
-                urlImage={MOCK[3].urlImage}
-              />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+        </BottomTextWrapperSCP>
+
+        <DefaultCardsWrapperSCP>
+          <LandingCardCP
+            synopsis={MOCK[1].synopsis}
+            movieTitle={MOCK[1].movieTitle}
+            urlImage={MOCK[1].urlImage}
+          />
+
+          <LandingCardCP
+            synopsis={MOCK[2].synopsis}
+            movieTitle={MOCK[2].movieTitle}
+            urlImage={MOCK[2].urlImage}
+          />
+
+          <LandingCardCP
+            synopsis={MOCK[3].synopsis}
+            movieTitle={MOCK[3].movieTitle}
+            urlImage={MOCK[3].urlImage}
+          />
+        </DefaultCardsWrapperSCP>
+      </RightWrapperAreaSCP>
     </MainWrapperLandingScreenContentSCP>
   )
 }
@@ -78,11 +75,58 @@ export default function LandingScreenContentCP(): JSX.Element {
 const MainWrapperLandingScreenContentSCP = styled.div`
   padding-left: 30px;
   padding-right: 30px;
+  display: grid;
+  column-gap: 30px;
+  grid-template-areas:
+    'topText .'
+    'mainCard rightArea';
+  grid-template-columns: 450px 1fr;
+`
+const LandingTopTextSCP = styled.div`
+  display: grid;
+  max-width: 450px;
+  grid-area: topText;
+`
+const MainCardWrapperSCP = styled.div`
+  display: grid;
+  grid-area: mainCard;
+  max-width: 450px;
+`
+const RightWrapperAreaSCP = styled.div`
+  display: grid;
+  grid-area: rightArea;
+  width: 100%;
+  grid-template-areas:
+    'hintoText'
+    'bottomText'
+    'defaultCardsArea';
+`
+const HintoTextSCP = styled.div`
+  display: grid;
+  grid-area: hintoText;
+
+  max-width: 700px;
+  justify-self: center;
 `
 const BottomTextWrapperSCP = styled.div`
-  font-size: 20px;
+  display: grid;
+  grid-area: bottomText;
+  justify-self: center;
+
   max-width: 800px;
-  border-bottom: 2px solid ${props => props.theme.colors.headerAndFooterDivisor};
   padding-bottom: 20px;
+  border-bottom: 2px solid ${props => props.theme.colors.headerAndFooterDivisor};
   margin-bottom: 20px;
+
+  .ant-typography {
+    font-size: 20px;
+  }
+`
+const DefaultCardsWrapperSCP = styled.div`
+  display: grid;
+  grid-area: defaultCardsArea;
+  grid-template-columns: repeat(auto-fit, 340px);
+  column-gap: 30px;
+  row-gap: 30px;
+  justify-content: center;
 `

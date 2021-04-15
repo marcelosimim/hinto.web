@@ -1,24 +1,21 @@
 import { Dropdown, Menu } from 'antd'
 import Avatar from 'antd/lib/avatar/avatar'
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import LoginImageSRC from '../../../../assets/LoginImage.svg'
+import { GlobalContext } from '../../../context/GlobalContext'
 import { TextCPTypesEnum } from '../../text/enums/TextCPTypesEnum'
 import TextCP from '../../text/TextCP'
 
-interface IHeaderOptionsForUsersICPProps {
-  onClickExit: () => void
-  onClickShowProfile: () => void
-}
-
 /** Cria os itens a serem exibidos no dropdown do menu */
-function renderMenuItens(props: IHeaderOptionsForUsersICPProps): JSX.Element {
+function renderMenuItens(): JSX.Element {
+  const globalContext = useContext(GlobalContext)
   return (
     <Menu>
-      <Menu.Item onClick={props.onClickShowProfile}>
+      <Menu.Item onClick={() => globalContext.setShowDrawer(true)}>
         <TextCP content={'Meu perfil'} />
       </Menu.Item>
-      <Menu.Item onClick={props.onClickExit}>
+      <Menu.Item onClick={() => console.log('sair')}>
         <TextCP content={'Sair'} type={TextCPTypesEnum.danger} />
       </Menu.Item>
     </Menu>
@@ -33,12 +30,10 @@ function renderMenuItens(props: IHeaderOptionsForUsersICPProps): JSX.Element {
  * @returns JSX.Element
  * @todo criar um DropdownCP, um MenuCP, um MenuItemICP e um AvatarCP
  */
-export default function HeaderOptionsForUsersICP(
-  props: IHeaderOptionsForUsersICPProps
-): JSX.Element {
+export default function HeaderOptionsForUsersICP(): JSX.Element {
   return (
     <MainWrapperHeaderOptionsSCP>
-      <Dropdown overlay={renderMenuItens(props)} trigger={['click']}>
+      <Dropdown overlay={renderMenuItens()} trigger={['click']}>
         <Avatar alt={'avatar-img'} shape={'circle'} src={LoginImageSRC} />
       </Dropdown>
     </MainWrapperHeaderOptionsSCP>

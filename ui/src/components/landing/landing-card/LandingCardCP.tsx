@@ -20,13 +20,13 @@ export default function LandingCardCP(props: ILandingCardCPProps): JSX.Element {
       urlImage={props.urlImage}
       imageStyle={
         props.main
-          ? { height: '32vmax', width: '40vmin' }
-          : { height: '20vmax', width: '29vmin' }
+          ? { height: '580px', width: '450px' }
+          : { height: '350px', width: '340px' }
       }
       cardStyle={
         props.main
-          ? { height: '38vmax', width: '40vmin' }
-          : { height: '26vmax', width: '29vmin' }
+          ? { height: '750px', width: '450px' }
+          : { height: '520px', width: '340px' }
       }
     />
   )

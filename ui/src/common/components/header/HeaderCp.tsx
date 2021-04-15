@@ -17,12 +17,12 @@ interface IHeaderCPProps {
  * @todo implementar a forma como serão as options dentro do sistema
  */
 export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
+  useEffect(checkCurrentRoute, [props.currentRoute])
+
   const [
     enableHeaderOptionsWithoutLogin,
     setEnableHeaderOptionsWithoutLogin
   ] = useState(false)
-
-  useEffect(checkCurrentRoute, [props.currentRoute])
 
   function checkCurrentRoute(): void {
     setEnableHeaderOptionsWithoutLogin(
@@ -32,26 +32,13 @@ export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
     )
   }
 
-  function openProfileDrawer(): void {
-    console.log('open profile drawer')
-  }
-
-  function onClickExit(): void {
-    console.log('exit')
-  }
-
   return (
     <MainWrapperHeaderCP>
       <WrapperHeaderCP>
         <LogoWrapper></LogoWrapper>
         <OptionsWrapper>
           {enableHeaderOptionsWithoutLogin && <HeaderOptionsWithoutLoginCP />}
-          {!enableHeaderOptionsWithoutLogin && (
-            <HeaderOptionsForUsersICP
-              onClickExit={onClickExit}
-              onClickShowProfile={openProfileDrawer}
-            />
-          )}
+          {!enableHeaderOptionsWithoutLogin && <HeaderOptionsForUsersICP />}
         </OptionsWrapper>
       </WrapperHeaderCP>
     </MainWrapperHeaderCP>
