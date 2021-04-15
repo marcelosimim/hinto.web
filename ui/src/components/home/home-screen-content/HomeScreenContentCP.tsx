@@ -16,7 +16,7 @@ export default function HomeScreenContentCP(): JSX.Element {
     <MainWrapperHomeScreenContentSCP>
       <DrawerCP
         visible={globalContext.showDrawer}
-        onClose={() => globalContext.setShowDrawer(true)}
+        onClose={() => globalContext.setShowDrawer(false)}
       >
         <>este é um bom drawer</>
       </DrawerCP>
