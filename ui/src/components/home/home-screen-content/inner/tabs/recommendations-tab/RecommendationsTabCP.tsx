@@ -1,10 +1,10 @@
 import { Col, Row } from 'antd'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import PaginationCP from '../../../common/components/pagination/PaginationCP'
-import { IMyListTabResponseDTO as IRecommendationsTabResponseDTO } from '../../../interfaces/dtos/response/IMyListTabResponseDTO'
-import { MyListTabMock } from '../../../mocks/MyListTabMock'
-import HomeCardCP from '../home-card/HomeCardCP'
+import PaginationCP from '../../../../../../common/components/pagination/PaginationCP'
+import { IMyListTabResponseDTO as IRecommendationsTabResponseDTO } from '../../../../../../interfaces/dtos/response/IMyListTabResponseDTO'
+import { MyListTabMock } from '../../../../../../mocks/MyListTabMock'
+import HomeCardCP from '../../../../home-card/HomeCardCP'
 
 const MOCK: IRecommendationsTabResponseDTO = MyListTabMock
 const PAGE_SIZE = 10 /** A tela não está necessáriamente preparada para alterações nesta constante */

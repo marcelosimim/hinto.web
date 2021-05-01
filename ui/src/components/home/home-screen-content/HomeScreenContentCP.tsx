@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import DrawerCP from '../../../common/components/drawer/DrawerCP'
 import TabsCP from '../../../common/components/tabs/TabsCP'
 import { GlobalContext } from '../../../common/context/GlobalContext'
-import { HomeScreenContentTabsICP } from './inner/HomeScreenContentTabsICP'
+import DrawerContentICP from './inner/drawer/drawer-content/DrawerContentICP'
+import { HomeScreenContentTabsICP } from './inner/tabs/HomeScreenContentTabsICP'
 
 /**
  * Agrupa todo o conteúdo da tela principal do sistema.
@@ -17,8 +18,12 @@ export default function HomeScreenContentCP(): JSX.Element {
       <DrawerCP
         visible={globalContext.showDrawer}
         onClose={() => globalContext.setShowDrawer(false)}
+        title={'Configurações de perfil'}
       >
-        <>este é um bom drawer</>
+        <DrawerContentICP
+          userName={'melhor usuário'}
+          userEmail={'melhor email'}
+        />
       </DrawerCP>
       <TabsCP defaultActiveKey={'1'} tabs={HomeScreenContentTabsICP} />
     </MainWrapperHomeScreenContentSCP>

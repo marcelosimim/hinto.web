@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import SearchFieldICP from './search-field/SearchFieldICP'
+import SearchFieldICP from './inner/SearchFieldICP'
 
 /**
  * Constrói a tela de busca para o usuário
