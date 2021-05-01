@@ -1,6 +1,20 @@
-import Search from 'antd/lib/transfer/search'
 import React from 'react'
+import styled from 'styled-components'
+import SearchFieldICP from './search-field/SearchFieldICP'
 
+/**
+ * Constrói a tela de busca para o usuário
+ * @author rafaelvictor01
+ * @returns JSX.Element
+ */
 export default function SearchTabCP(): JSX.Element {
-  return <Search></Search>
+  return (
+    <MainWrapperSearchTabSCP>
+      <SearchFieldICP placeholder={'Busque pelo seu filme favorito'} />
+    </MainWrapperSearchTabSCP>
+  )
 }
+
+const MainWrapperSearchTabSCP = styled.div`
+  align-content: center;
+`

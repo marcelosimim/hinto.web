@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import FooterCP from '../footer/FooterCP'
-import HeaderCP from '../header/HeaderCp'
+import HeaderCP from '../header/HeaderCP'
 interface ILayoutCPProps {
   content: JSX.Element
   currentRoute: string

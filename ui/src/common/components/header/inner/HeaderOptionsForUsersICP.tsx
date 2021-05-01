@@ -1,5 +1,6 @@
 import { Dropdown, Menu } from 'antd'
 import Avatar from 'antd/lib/avatar/avatar'
+import { useRouter } from 'next/dist/client/router'
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import LoginImageSRC from '../../../../assets/LoginImage.svg'
@@ -10,12 +11,19 @@ import TextCP from '../../text/TextCP'
 /** Cria os itens a serem exibidos no dropdown do menu */
 function renderMenuItens(): JSX.Element {
   const globalContext = useContext(GlobalContext)
+  const router = useRouter()
+
+  function logout(): void {
+    /** Fazer toda a a lógica para deslogar o usuário da aplicação aqui */
+    router.replace('/')
+  }
+
   return (
     <Menu>
       <Menu.Item onClick={() => globalContext.setShowDrawer(true)}>
         <TextCP content={'Meu perfil'} />
       </Menu.Item>
-      <Menu.Item onClick={() => console.log('sair')}>
+      <Menu.Item onClick={logout}>
         <TextCP content={'Sair'} type={TextCPTypesEnum.danger} />
       </Menu.Item>
     </Menu>

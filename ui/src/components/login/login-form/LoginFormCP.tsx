@@ -1,16 +1,25 @@
 import { Form, Formik } from 'formik'
+import { useRouter } from 'next/dist/client/router'
 import React from 'react'
 import styled from 'styled-components'
-import DatepickerCP from '../../../common/components/fields/datepicker/DatepickerCP'
 import SubmitButtonCP from '../../../common/components/fields/submit-button/SubmitButtonCP'
 import TextInputCP from '../../../common/components/fields/text-input/TextInputCP'
 import { LoginFormValidator } from './validators/LoginFormValidator'
 
 const INITIAL_VALUES = { email: '', password: '', birthDate: '' }
 
+/**
+ * Constrói a tela de login do sistema e, por hora, valida o login.
+ * @author rafaelvictor01
+ * @returns JSX.Element
+ */
 export default function LoginFormCP(): JSX.Element {
+  const router = useRouter()
+
   function onSubmitForm(values): void {
     console.log('onSubmit', values)
+    /** Fazer aqui todo o processo de validação antes de dar o replace */
+    router.replace('/home')
   }
 
   return (
@@ -40,11 +49,6 @@ export default function LoginFormCP(): JSX.Element {
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
-            />
-            <DatepickerCP
-              name={'birthDate'}
-              label={'Data de nascimento'}
-              isRequired={true}
             />
             <SubmitButtonCP textButton={'Entrar'} />
           </ContentWrapperLoginFormSCP>
