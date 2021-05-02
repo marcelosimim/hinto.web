@@ -5,7 +5,7 @@ import PaginationCP from '../../../../../../common/components/pagination/Paginat
 import { GlobalContext } from '../../../../../../common/context/GlobalContext'
 import { IMyListTabResponseDTO } from '../../../../../../interfaces/dtos/response/IMyListTabResponseDTO'
 import { MyListTabMock } from '../../../../../../mocks/MyListTabMock'
-import HomeCardCP from '../../../../home-card/HomeCardCP'
+import HomeMovieCardCP from '../../../../home-movie-card/HomeMovieCardCP'
 
 const MOCK: IMyListTabResponseDTO = MyListTabMock
 const PAGE_SIZE = 10 /** A tela não está necessáriamente preparada para alterações nesta constante */
@@ -26,7 +26,7 @@ export default function MyListTabCP(): JSX.Element {
     setListOfCards(
       MOCK.list.map((currentMovie, index) => (
         <Col className={'gutter-row'} key={index}>
-          <HomeCardCP
+          <HomeMovieCardCP
             movieID={currentMovie.id}
             urlImage={currentMovie.urlImage}
             movieTitle={currentMovie.title}

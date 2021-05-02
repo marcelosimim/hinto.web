@@ -43,8 +43,4 @@ export default function ModalCP(props: IModalCPProps): JSX.Element {
   )
 }
 
-const MainWrapperModalSCP = styled.div`
-  .ant-modal-footer {
-    border-top: 0px solid red !important;
-  }
-`
+const MainWrapperModalSCP = styled.div``

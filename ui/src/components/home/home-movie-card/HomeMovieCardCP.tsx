@@ -1,7 +1,7 @@
 import React from 'react'
 import MovieCardCP from '../../../common/components/movie-card/MovieCardCP'
 
-interface IHomeCardCPProps {
+interface IHomeMovieCardCPProps {
   urlImage: string
   movieTitle: string
   movieID: number
@@ -14,7 +14,9 @@ interface IHomeCardCPProps {
  * @author rafaelvictor01
  * @returns JSX.Element
  */
-export default function HomeCardCP(props: IHomeCardCPProps): JSX.Element {
+export default function HomeMovieCardCP(
+  props: IHomeMovieCardCPProps
+): JSX.Element {
   return (
     <MovieCardCP
       movieTitle={props.movieTitle}

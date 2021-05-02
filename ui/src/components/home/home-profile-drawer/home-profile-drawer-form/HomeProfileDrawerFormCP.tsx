@@ -1,11 +1,11 @@
 import { Form, Formik } from 'formik'
 import React from 'react'
 import styled from 'styled-components'
-import DatepickerCP from '../../../../../../common/components/fields/datepicker/DatepickerCP'
-import GenderpickerCP from '../../../../../../common/components/fields/genderpicker/GenderpickerCP'
-import SubmitButtonCP from '../../../../../../common/components/fields/submit-button/SubmitButtonCP'
-import TextInputCP from '../../../../../../common/components/fields/text-input/TextInputCP'
-import { DrawerFormValidator } from './validators/DrawerFormValidator'
+import DatepickerCP from '../../../../common/components/fields/datepicker/DatepickerCP'
+import GenderpickerCP from '../../../../common/components/fields/genderpicker/GenderpickerCP'
+import SubmitButtonCP from '../../../../common/components/fields/submit-button/SubmitButtonCP'
+import TextInputCP from '../../../../common/components/fields/text-input/TextInputCP'
+import { DrawerFormValidator } from './validators/HomeProfileDrawerFormValidator'
 
 const INITIAL_VALUES = {
   newPassword: '',
@@ -20,7 +20,7 @@ const INITIAL_VALUES = {
  * @returns JSX.Element
  * @todo descobrir como fazer o SubmitButtonCP funcionar mesmo estando dentro de uma styled div (importante!). vai ser usado na tela de cadastro tbm
  */
-export default function DrawerFormICP(): JSX.Element {
+export default function HomeProfileDrawerFormCP(): JSX.Element {
   function onSubmitForm(values): void {
     console.log('onSubmit', values)
   }

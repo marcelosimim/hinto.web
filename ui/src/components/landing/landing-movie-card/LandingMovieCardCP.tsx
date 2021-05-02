@@ -1,6 +1,7 @@
 import React from 'react'
 import MovieCardCP from '../../../common/components/movie-card/MovieCardCP'
-interface ILandingCardCPProps {
+
+interface ILandingMovieCardCPProps {
   urlImage: string
   movieTitle: string
   synopsis: string
@@ -12,7 +13,9 @@ interface ILandingCardCPProps {
  * @author rafaelvictor01
  * @returns JSX.Element
  */
-export default function LandingCardCP(props: ILandingCardCPProps): JSX.Element {
+export default function LandingMovieCardCP(
+  props: ILandingMovieCardCPProps
+): JSX.Element {
   return (
     <MovieCardCP
       movieTitle={props.movieTitle}

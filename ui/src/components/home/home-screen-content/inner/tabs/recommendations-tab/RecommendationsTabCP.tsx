@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import PaginationCP from '../../../../../../common/components/pagination/PaginationCP'
 import { IMyListTabResponseDTO as IRecommendationsTabResponseDTO } from '../../../../../../interfaces/dtos/response/IMyListTabResponseDTO'
 import { MyListTabMock } from '../../../../../../mocks/MyListTabMock'
-import HomeCardCP from '../../../../home-card/HomeCardCP'
+import HomeMovieCardCP from '../../../../home-movie-card/HomeMovieCardCP'
 
 const MOCK: IRecommendationsTabResponseDTO = MyListTabMock
 const PAGE_SIZE = 10 /** A tela não está necessáriamente preparada para alterações nesta constante */
@@ -31,7 +31,7 @@ export default function RecommendationsTabCP(): JSX.Element {
     setListOfCards(
       MOCK.list.map((currentMovie, index) => (
         <Col className={'gutter-row'} key={index}>
-          <HomeCardCP
+          <HomeMovieCardCP
             movieID={currentMovie.id}
             urlImage={currentMovie.urlImage}
             movieTitle={currentMovie.title}

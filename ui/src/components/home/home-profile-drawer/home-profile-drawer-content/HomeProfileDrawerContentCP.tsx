@@ -1,23 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
-import ButtonCP from '../../../../../../common/components/button/ButtonCP'
-import { TextCPTypesEnum } from '../../../../../../common/components/text/enums/TextCPTypesEnum'
-import TextCP from '../../../../../../common/components/text/TextCP'
-import UserImageCP from '../../../../../../common/components/user-image/UserImageCP'
-import DrawerFormICP from '../drawer-form/DrawerFormICP'
+import ButtonCP from '../../../../common/components/button/ButtonCP'
+import { TextCPTypesEnum } from '../../../../common/components/text/enums/TextCPTypesEnum'
+import TextCP from '../../../../common/components/text/TextCP'
+import UserImageCP from '../../../../common/components/user-image/UserImageCP'
+import HomeProfileDrawerFormCP from '../home-profile-drawer-form/HomeProfileDrawerFormCP'
 
-interface IDrawerContentICPProps {
+interface IHomeProfileDrawerContentCPProps {
   userName: string
   userEmail: string
 }
 
 /**
- * Constrói o conteúdo do drawer que permite o usuário gerenciar as suas configurações de conta
+ * Constrói, para a tela home, o conteúdo do drawer que permite o usuário gerenciar as suas
+ * configurações de conta
  * @author rafaelvictor01
  * @returns JSX.Element
  */
-export default function DrawerContentICP(
-  props: IDrawerContentICPProps
+export default function HomeProfileDrawerContentCP(
+  props: IHomeProfileDrawerContentCPProps
 ): JSX.Element {
   function onClickDeleteAccount(): void {
     console.log('onClickDeleteAccount')
@@ -36,7 +37,7 @@ export default function DrawerContentICP(
           type={TextCPTypesEnum.warning}
         />
       </UserImageWrapperSCP>
-      <DrawerFormICP />
+      <HomeProfileDrawerFormCP />
       <TrashButtonsWrapperSCP>
         <ButtonCP type={'text'} onClick={onClickDeleteAccount} danger={true}>
           Excluir conta

@@ -4,7 +4,7 @@ import DrawerCP from '../../../common/components/drawer/DrawerCP'
 import ModalCP from '../../../common/components/modal/ModalCP'
 import TabsCP from '../../../common/components/tabs/TabsCP'
 import { GlobalContext } from '../../../common/context/GlobalContext'
-import DrawerContentICP from './inner/drawer/drawer-content/DrawerContentICP'
+import HomeProfileDrawerContentCP from '../home-profile-drawer/home-profile-drawer-content/HomeProfileDrawerContentCP'
 import { HomeScreenContentTabsICP } from './inner/tabs/HomeScreenContentTabsICP'
 
 /**
@@ -21,9 +21,9 @@ export default function HomeScreenContentCP(): JSX.Element {
         onClose={() => globalContext.setShowDrawer(false)}
         title={'Configurações de perfil'}
       >
-        <DrawerContentICP
-          userName={'melhor usuário'}
-          userEmail={'melhor email'}
+        <HomeProfileDrawerContentCP
+          userName={'Rafael Victor Araujo'}
+          userEmail={'rafaelvictor.bernardes@gmail.com'}
         />
       </DrawerCP>
       <ModalCP
