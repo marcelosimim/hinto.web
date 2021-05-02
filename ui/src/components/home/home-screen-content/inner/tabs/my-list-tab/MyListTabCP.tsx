@@ -1,7 +1,8 @@
 import { Col, Row } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PaginationCP from '../../../../../../common/components/pagination/PaginationCP'
+import { GlobalContext } from '../../../../../../common/context/GlobalContext'
 import { IMyListTabResponseDTO } from '../../../../../../interfaces/dtos/response/IMyListTabResponseDTO'
 import { MyListTabMock } from '../../../../../../mocks/MyListTabMock'
 import HomeCardCP from '../../../../home-card/HomeCardCP'
@@ -16,12 +17,10 @@ const PAGE_SIZE = 10 /** A tela não está necessáriamente preparada para alter
  * @todo Abstrair os componentes Col e Row para não usar nada do antd diretamente aqui - Baixo impacto pra muito esforço... deixar pra depois
  */
 export default function MyListTabCP(): JSX.Element {
+  const globalContext = useContext(GlobalContext)
+
   useEffect(whenRender, [])
   const [listOfCards, setListOfCards] = useState([])
-
-  function openMovieDetailsModal(movieID: number): void {
-    console.log('movieID', movieID)
-  }
 
   function whenRender(): void {
     setListOfCards(
@@ -32,7 +31,9 @@ export default function MyListTabCP(): JSX.Element {
             urlImage={currentMovie.urlImage}
             movieTitle={currentMovie.title}
             synopsis={currentMovie.synopsis}
-            onClick={openMovieDetailsModal}
+            onClick={(movieID: number) =>
+              globalContext.openMovieDetailsModal(movieID)
+            }
           />
         </Col>
       ))

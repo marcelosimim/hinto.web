@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import DrawerCP from '../../../common/components/drawer/DrawerCP'
+import ModalCP from '../../../common/components/modal/ModalCP'
 import TabsCP from '../../../common/components/tabs/TabsCP'
 import { GlobalContext } from '../../../common/context/GlobalContext'
 import DrawerContentICP from './inner/drawer/drawer-content/DrawerContentICP'
@@ -25,6 +26,13 @@ export default function HomeScreenContentCP(): JSX.Element {
           userEmail={'melhor email'}
         />
       </DrawerCP>
+      <ModalCP
+        visible={globalContext.showModal}
+        onClose={globalContext.closeMovieDetailsModal}
+        customFooter={[]}
+      >
+        {globalContext.movieIDToModal}
+      </ModalCP>
       <TabsCP defaultActiveKey={'1'} tabs={HomeScreenContentTabsICP} />
     </MainWrapperHomeScreenContentSCP>
   )
