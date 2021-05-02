@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { SystemRoutes } from '../../routes/SystemRoutes'
+import HeaderOptionsForUsersICP from './inner/HeaderOptionsForUsersICP'
 import HeaderOptionsWithoutLoginCP from './inner/HeaderOptionsWithoutLoginICP'
 
 interface IHeaderCPProps {
@@ -16,12 +17,12 @@ interface IHeaderCPProps {
  * @todo implementar a forma como serão as options dentro do sistema
  */
 export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
+  useEffect(checkCurrentRoute, [props.currentRoute])
+
   const [
     enableHeaderOptionsWithoutLogin,
     setEnableHeaderOptionsWithoutLogin
   ] = useState(false)
-
-  useEffect(checkCurrentRoute, [props.currentRoute])
 
   function checkCurrentRoute(): void {
     setEnableHeaderOptionsWithoutLogin(
@@ -37,7 +38,7 @@ export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
         <LogoWrapper></LogoWrapper>
         <OptionsWrapper>
           {enableHeaderOptionsWithoutLogin && <HeaderOptionsWithoutLoginCP />}
-          {!enableHeaderOptionsWithoutLogin && <>aqui é dentro do sistema</>}
+          {!enableHeaderOptionsWithoutLogin && <HeaderOptionsForUsersICP />}
         </OptionsWrapper>
       </WrapperHeaderCP>
     </MainWrapperHeaderCP>

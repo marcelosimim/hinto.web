@@ -4,36 +4,45 @@ import { Image } from 'antd'
 import CardCP from '../../../common/components/card/CardCP'
 import Meta from 'antd/lib/card/Meta'
 
-interface ILandingCardCPProps {
+interface IMovieCardCPProps {
   urlImage: string
   movieTitle: string
   synopsis: string
-  main?: boolean
+  movieID?: number
+  enablePreview?: boolean
+  cardStyle?: React.CSSProperties
+  imageStyle?: React.CSSProperties
+  onClick?: (movieID: number) => void
 }
 
 /**
- * Abstrai a criação de 1 card de filme para a landing-page
+ * Abstrai a criação de 1 card de filme para o sistema
  *
  * @todo Abstrair o componente Meta para não usar nada do antd diretamente aqui
+ * @todo Abstrair o componente Image para não usar nada do antd diretamente aqui
  *
  * @author rafaelvictor01
  * @returns JSX.Element
  */
-export default function LandingCardCP(props: ILandingCardCPProps): JSX.Element {
+export default function MovieCardCP(props: IMovieCardCPProps): JSX.Element {
+  function onClickMainWrapperLandingCard(): void {
+    if (props.onClick && props.movieID) {
+      props.onClick(props.movieID)
+    }
+  }
+
   return (
     <MainWrapperLandingCardSCP>
       <CardCP
         hoverable={true}
-        style={
-          props.main
-            ? { height: '700px', width: '417px' }
-            : { height: '470px', width: '280px' }
-        }
+        style={props.cardStyle}
+        onClick={onClickMainWrapperLandingCard}
         cover={
           <Image
-            width={props.main ? 417 : 280}
-            height={props.main ? 480 : 320}
+            style={props.imageStyle}
             src={props.urlImage}
+            alt={`${props.movieTitle}-img`}
+            preview={props.enablePreview}
           />
         }
       >
