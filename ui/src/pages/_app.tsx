@@ -9,10 +9,11 @@ import { CommonUtils } from '../common/utils/CommonUtils'
 import { ConfigProvider } from 'antd'
 import ptBR from 'antd/lib/locale-provider/pt_BR'
 import '../common/styles/antd.less'
+import { GlobalContextProvider } from '../common/context/GlobalContext'
 
 /**
  * @param AppProps
- * @returns { JSX.Element }
+ * @returns JSX.Element
  * @author rafaelvictor01
  *
  * @todo add description
@@ -20,15 +21,17 @@ import '../common/styles/antd.less'
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter()
   return (
-    <ThemeProvider theme={theme}>
-      <ConfigProvider locale={ptBR}>
-        <title>{CommonUtils.getTextForTitle(router.route)}</title>
-        <GlobalStyle />
-        <LayoutCP
-          currentRoute={router.route}
-          content={<Component {...pageProps} />}
-        />
-      </ConfigProvider>
-    </ThemeProvider>
+    <GlobalContextProvider>
+      <ThemeProvider theme={theme}>
+        <ConfigProvider locale={ptBR}>
+          <title>{CommonUtils.getTextForTitle(router.route)}</title>
+          <GlobalStyle />
+          <LayoutCP
+            currentRoute={router.route}
+            content={<Component {...pageProps} />}
+          />
+        </ConfigProvider>
+      </ThemeProvider>
+    </GlobalContextProvider>
   )
 }

@@ -7,6 +7,7 @@ interface ICardCPProps {
   style?: React.CSSProperties
   hoverable?: boolean
   cover?: JSX.Element
+  onClick?: () => void
 }
 
 /**
@@ -24,7 +25,12 @@ interface ICardCPProps {
 export default function CardCP(props: ICardCPProps): JSX.Element {
   return (
     <MainWrapperCardSCP>
-      <Card style={props.style} hoverable={props.hoverable} cover={props.cover}>
+      <Card
+        style={props.style}
+        hoverable={props.hoverable}
+        cover={props.cover}
+        onClick={props.onClick}
+      >
         {props.children}
       </Card>
     </MainWrapperCardSCP>

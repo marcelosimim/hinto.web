@@ -9,16 +9,21 @@ import { createGlobalStyle } from 'styled-components'
  * @author rafaelvictor01
  */
 export default createGlobalStyle`
-  width: 100vw;
-  height: 100vw;
 
   * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
   }
 
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+
   body {
+    display: flex;
+    flex-direction: column;
     background: ${props => props.theme.colors.mainBackground};
     color: ${props => props.theme.colors.mainTextColor};
     font: 400 16px Roboto, sans-serif;

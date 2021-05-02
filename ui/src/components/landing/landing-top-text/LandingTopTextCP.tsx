@@ -20,8 +20,7 @@ export default function LandingTopTextCP(): JSX.Element {
 const TopTextWrapperSCP = styled.div`
   font-size: 22px;
   font-weight: 400;
-  flex-direction: column;
   align-content: center;
   padding-bottom: 20px;
-  padding-left: 130px;
+  padding-left: 30px;
 `

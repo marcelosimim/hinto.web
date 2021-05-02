@@ -1,10 +1,9 @@
 import React from 'react'
 import CardCP from '../../../common/components/card/CardCP'
 import LoginFormCP from '../login-form/LoginFormCP'
-import Image from 'next/image'
 import styled from 'styled-components'
-import LoginImageSRC from '../../../assets/LoginImage.svg'
 import HintoTextCP from '../../../common/components/hinto-text/HintoTextCP'
+import UserImageCP from '../../../common/components/user-image/UserImageCP'
 
 /**
  * Conteúdo da tela de login do sistema
@@ -18,13 +17,7 @@ export default function LoginScreenContentCP(): JSX.Element {
       <ContentWrapperSCP>
         <CardCP style={{ width: '500px' }}>
           <ContentCardWrapperSCP>
-            <Image
-              src={LoginImageSRC}
-              alt={'login-image'}
-              width={150}
-              height={150}
-              className={'login-image'}
-            />
+            <UserImageCP />
             <LoginFormCP />
           </ContentCardWrapperSCP>
         </CardCP>

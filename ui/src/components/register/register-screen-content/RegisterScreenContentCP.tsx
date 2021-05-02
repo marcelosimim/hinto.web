@@ -1,9 +1,8 @@
-import Image from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
-import LoginImageSRC from '../../../assets/LoginImage.svg'
 import CardCP from '../../../common/components/card/CardCP'
 import HintoTextCP from '../../../common/components/hinto-text/HintoTextCP'
+import UserImageCP from '../../../common/components/user-image/UserImageCP'
 import RegisterFormCP from '../register-form/RegisterFormCP'
 
 /**
@@ -18,13 +17,7 @@ export default function RegisterScreenContentCP(): JSX.Element {
       <ContentWrapperSCP>
         <CardCP style={{ width: '500px' }}>
           <ContentCardWrapperSCP>
-            <Image
-              src={LoginImageSRC}
-              alt={'login-image'}
-              width={150}
-              height={150}
-              className={'login-image'}
-            />
+            <UserImageCP />
             <RegisterFormCP />
           </ContentCardWrapperSCP>
         </CardCP>

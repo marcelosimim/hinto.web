@@ -23,12 +23,8 @@ export function LayoutCP(props: ILayoutCPProps): JSX.Element {
   )
 }
 
-const MainWrapperLayoutSCP = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vmin;
-`
+const MainWrapperLayoutSCP = styled.div``
 const ContentWrapperLayoutSCP = styled.div`
-  height: 100vmin;
+  min-height: calc(100vh - 6.4em);
   padding: 25px;
 `
