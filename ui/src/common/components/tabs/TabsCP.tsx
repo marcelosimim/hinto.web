@@ -32,7 +32,10 @@ export default function TabsCP(props: ITabsCPProps): JSX.Element {
   }
 
   return (
-    <Tabs defaultActiveKey={props.defaultActiveKey} centered>
+    <Tabs
+      defaultActiveKey={props.defaultActiveKey ? props.defaultActiveKey : '1'}
+      centered
+    >
       {tabItens.map(currentItem => currentItem)}
     </Tabs>
   )

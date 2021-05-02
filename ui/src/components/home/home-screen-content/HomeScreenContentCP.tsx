@@ -1,10 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import DrawerCP from '../../../common/components/drawer/DrawerCP'
-import ModalCP from '../../../common/components/modal/ModalCP'
 import TabsCP from '../../../common/components/tabs/TabsCP'
-import { GlobalContext } from '../../../common/context/GlobalContext'
-import HomeProfileDrawerContentCP from '../home-profile-drawer/home-profile-drawer-content/HomeProfileDrawerContentCP'
+import HomeMovieDetailsModalCP from '../home-movie-details-modal/HomeMovieDetailsModalCP'
+import HomeProfileDrawerCP from '../home-profile-drawer/HomeProfileDrawerCP'
 import { HomeScreenContentTabsICP } from './inner/tabs/HomeScreenContentTabsICP'
 
 /**
@@ -13,27 +11,11 @@ import { HomeScreenContentTabsICP } from './inner/tabs/HomeScreenContentTabsICP'
  * @returns JSX.Element
  */
 export default function HomeScreenContentCP(): JSX.Element {
-  const globalContext = useContext(GlobalContext)
   return (
     <MainWrapperHomeScreenContentSCP>
-      <DrawerCP
-        visible={globalContext.showDrawer}
-        onClose={() => globalContext.setShowDrawer(false)}
-        title={'Configurações de perfil'}
-      >
-        <HomeProfileDrawerContentCP
-          userName={'Rafael Victor Araujo'}
-          userEmail={'rafaelvictor.bernardes@gmail.com'}
-        />
-      </DrawerCP>
-      <ModalCP
-        visible={globalContext.showModal}
-        onClose={globalContext.closeMovieDetailsModal}
-        customFooter={[]}
-      >
-        {globalContext.movieIDToModal}
-      </ModalCP>
-      <TabsCP defaultActiveKey={'1'} tabs={HomeScreenContentTabsICP} />
+      <HomeProfileDrawerCP />
+      <HomeMovieDetailsModalCP />
+      <TabsCP tabs={HomeScreenContentTabsICP} />
     </MainWrapperHomeScreenContentSCP>
   )
 }
