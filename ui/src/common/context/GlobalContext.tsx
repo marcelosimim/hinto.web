@@ -1,7 +1,15 @@
+import axios from 'axios'
+import { useRouter } from 'next/dist/client/router'
 import React, { createContext, useState } from 'react'
+import { IUserAuthResponseDTO } from '../../interfaces/dtos/response/IUserAuthResponseDTO'
 
 // Definição do type personalizado do nosso contexto
 type GlobalContextTP = {
+  /** Para o controle de acesso */
+  authUser: Partial<IUserAuthResponseDTO>
+  login: (user: IUserAuthResponseDTO) => void
+  logout: () => void
+
   /** Para o Drawer */
   showDrawer: boolean
   setShowDrawer: (showDrawer: boolean) => void
@@ -23,9 +31,14 @@ export const GlobalContext = createContext<Partial<GlobalContextTP>>({})
  * @author rafaelvictor01
  */
 export const GlobalContextProvider: React.FC = ({ children }) => {
+  const router = useRouter()
+
+  axios.defaults.baseURL = 'https://hinto-api.herokuapp.com'
+
   const [showDrawer, setShowDrawer] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [movieIDToModal, setMovieIDToModal] = useState(null)
+  const [authUser, setAuthUser] = useState({})
 
   function openMovieDetailsModal(movieID: number): void {
     setShowModal(true)
@@ -37,6 +50,16 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
     setMovieIDToModal(null)
   }
 
+  function login(user: IUserAuthResponseDTO): void {
+    setAuthUser(user)
+    router.replace('/home')
+  }
+
+  function logout(): void {
+    setAuthUser({})
+    router.replace('/')
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -45,7 +68,10 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
         showModal,
         movieIDToModal,
         openMovieDetailsModal,
-        closeMovieDetailsModal
+        closeMovieDetailsModal,
+        authUser,
+        login,
+        logout
       }}
     >
       {children}

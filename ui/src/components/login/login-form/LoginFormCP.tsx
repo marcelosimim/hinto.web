@@ -1,12 +1,14 @@
+import axios from 'axios'
 import { Form, Formik } from 'formik'
 import { useRouter } from 'next/dist/client/router'
 import React from 'react'
 import styled from 'styled-components'
 import SubmitButtonCP from '../../../common/components/fields/submit-button/SubmitButtonCP'
 import TextInputCP from '../../../common/components/fields/text-input/TextInputCP'
+import { IAuthRequestDTO } from '../../../interfaces/dtos/request/IAuthRequestDTO'
 import { LoginFormValidator } from './validators/LoginFormValidator'
 
-const INITIAL_VALUES = { email: '', password: '', birthDate: '' }
+const INITIAL_VALUES: IAuthRequestDTO = { email: '', senha: '' }
 
 /**
  * Constrói a tela de login do sistema e, por hora, valida o login.
@@ -16,16 +18,17 @@ const INITIAL_VALUES = { email: '', password: '', birthDate: '' }
 export default function LoginFormCP(): JSX.Element {
   const router = useRouter()
 
-  function onSubmitForm(values): void {
-    console.log('onSubmit', values)
-    /** Fazer aqui todo o processo de validação antes de dar o replace */
+  async function onSubmitForm(values: IAuthRequestDTO): Promise<void> {
+    const response = await axios.post('/usuario/autenticar', values)
+    console.log('data', response)
+
     router.replace('/home')
   }
 
   return (
     <Formik
       validateOnMount
-      onSubmit={onSubmitForm}
+      onSubmit={values => onSubmitForm(values)}
       validationSchema={LoginFormValidator}
       initialValues={INITIAL_VALUES}
     >
@@ -42,11 +45,11 @@ export default function LoginFormCP(): JSX.Element {
               onBlur={handleBlur}
             />
             <TextInputCP
-              name={'password'}
+              name={'senha'}
               type={'password'}
               label={'Password'}
               isRequired={true}
-              value={values.password}
+              value={values.senha}
               onChange={handleChange}
               onBlur={handleBlur}
             />

@@ -1,24 +1,65 @@
+import axios from 'axios'
 import { Form, Formik } from 'formik'
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import DatepickerCP from '../../../common/components/fields/datepicker/DatepickerCP'
 import GenderpickerCP from '../../../common/components/fields/genderpicker/GenderpickerCP'
 import SubmitButtonCP from '../../../common/components/fields/submit-button/SubmitButtonCP'
 import TextInputCP from '../../../common/components/fields/text-input/TextInputCP'
+import { NotificationTypeEnum } from '../../../common/components/notification/enums/NotificationTypeEnum'
+import { GlobalContext } from '../../../common/context/GlobalContext'
+import { ICreateUserRequestDTO } from '../../../interfaces/dtos/request/ICreateUserRequestDTO'
+import { IRegisterForm } from '../../../interfaces/IRegisterForm'
 import { RegisterFormValidator } from './validators/RegisterFormValidator'
+import createNotification from '../../../common/components/notification/createNotification'
 
-const INITIAL_VALUES = {
+const INITIAL_VALUES: IRegisterForm = {
   userName: '',
   email: '',
   password: '',
   confirmPassword: '',
-  birthDate: '',
-  gender: ''
+  birthDate: null,
+  gender: null
 }
 
+/**
+ * Constrói e controle o formulário para criação de um usuário
+ * @author rafaelvictor01
+ * @returns JSX.Element
+ */
 export default function RegisterFormCP(): JSX.Element {
-  function onSubmitForm(values): void {
-    console.log('onSubmit', values)
+  const globalContext = useContext(GlobalContext)
+
+  async function onSubmitForm(values: IRegisterForm): Promise<void> {
+    const DTO: ICreateUserRequestDTO = {
+      nome: values.userName,
+      email: values.email,
+      senha: values.password,
+      dataNascimento: values.birthDate.toLocaleString('pt-BR'),
+      sexo: values.gender
+    }
+
+    axios
+      .post('/usuario', DTO)
+      .then(request => {
+        if (request.status === 200) {
+          createNotification({
+            type: NotificationTypeEnum.success,
+            title: 'Usuário criado com sucesso!',
+            description:
+              'Agora é só aproveitar tudo que a gente tem pra te oferecer'
+          })
+          return globalContext.login(request.data)
+        }
+      })
+      .catch(error => {
+        createNotification({
+          type: NotificationTypeEnum.error,
+          title: 'Ops!',
+          description: 'Houve algum erro para criar o seu usuário'
+        })
+        console.log(`>>> ERRO: ${error}`)
+      })
   }
 
   return (
@@ -36,6 +77,7 @@ export default function RegisterFormCP(): JSX.Element {
                 name={'userName'}
                 type={'userName'}
                 label={'Nome de Usuário'}
+                placeholder={'Nome de Usuário'}
                 isRequired={true}
                 value={values.userName}
                 onChange={handleChange}
@@ -47,6 +89,7 @@ export default function RegisterFormCP(): JSX.Element {
                 name={'email'}
                 type={'email'}
                 label={'E-mail'}
+                placeholder={'E-mail'}
                 isRequired={true}
                 value={values.email}
                 onChange={handleChange}
@@ -58,6 +101,7 @@ export default function RegisterFormCP(): JSX.Element {
                 <DatepickerCP
                   name={'birthDate'}
                   label={'Data de nascimento'}
+                  placeholder={'Data de nascimento'}
                   isRequired={true}
                 />
               </DisplayGridWrapperSCP>
@@ -66,6 +110,7 @@ export default function RegisterFormCP(): JSX.Element {
                   name={'password'}
                   type={'password'}
                   label={'Senha'}
+                  placeholder={'Escolha sua senha'}
                   isRequired={true}
                   value={values.password}
                   onChange={handleChange}
@@ -78,7 +123,8 @@ export default function RegisterFormCP(): JSX.Element {
                 <GenderpickerCP
                   name={'gender'}
                   label={'Gênero'}
-                  isRequired={false}
+                  placeholder={'Escolha seu gênero'}
+                  isRequired={true}
                 />
               </DisplayGridWrapperSCP>
               <DisplayGridWrapperSCP>
@@ -86,6 +132,7 @@ export default function RegisterFormCP(): JSX.Element {
                   name={'confirmPassword'}
                   type={'password'}
                   label={'Confirmação da senha'}
+                  placeholder={'Confirme sua senha'}
                   isRequired={true}
                   value={values.confirmPassword}
                   onChange={handleChange}

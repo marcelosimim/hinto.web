@@ -1,6 +1,8 @@
 import { Select } from 'antd'
+import { Field, FieldProps } from 'formik'
 import React from 'react'
 import styled from 'styled-components'
+import { GenderEnum } from '../../../enums/GenderEnum'
 import TextInputLabelICP from '../text-input/inner/TextInputLabelICP'
 
 const { Option } = Select
@@ -12,11 +14,17 @@ interface IGenderpickerCPProps {
   disabled?: boolean
   autoFocus?: boolean
   isRequired?: boolean
-  // onChange?: (date: moment.Moment, dateString: string) => void
+  onChange?: (gender: GenderEnum) => void
 }
 
 /**
- * @todo add descrição (Marcelo Simim)
+ * Componente de select de gênero sexual criado, sobretudo, para funcionar em formulários criados
+ * pelo Formik. Contudo, Usa as props do select do antd.
+ *
+ * @author rafaelvictor01
+ * @author marcelosimim
+ * @param props IGenderpickerCPProps
+ * @returns JSX.Element
  */
 export default function GenderpickerCP(
   props: IGenderpickerCPProps
@@ -24,11 +32,28 @@ export default function GenderpickerCP(
   return (
     <MainWrapperGenderPickerSCP>
       <TextInputLabelICP label={props.label} isRequired={props.isRequired} />
-      <Select>
-        <Option value="male">Masculino</Option>
-        <Option value="female">Feminino</Option>
-        <Option value="another">Outro</Option>
-      </Select>
+      <Field name={props.name}>
+        {({
+          field: { value },
+          form: { setFieldValue, setFieldTouched }
+        }: FieldProps) => (
+          <Select
+            className={props.name}
+            allowClear={false}
+            placeholder={props.placeholder}
+            value={value || null}
+            onChange={(gender: GenderEnum) => {
+              setFieldValue(props.name, gender)
+              setFieldTouched(props.name, true, false)
+              props.onChange && props.onChange(gender)
+            }}
+          >
+            <Option value={GenderEnum.male}>Masculino</Option>
+            <Option value={GenderEnum.female}>Feminino</Option>
+            <Option value={GenderEnum.another}>Outro</Option>
+          </Select>
+        )}
+      </Field>
     </MainWrapperGenderPickerSCP>
   )
 }
@@ -39,6 +64,7 @@ const MainWrapperGenderPickerSCP = styled.div`
   .ant-select:not(.ant-select-customize-input) .ant-select-selector {
     margin-top: 10px;
     border: none;
+    align-items: center;
     background-color: ${props => props.theme.colors.mainBackground};
     height: ${props => props.theme.defaultSize.inputFieldHeight};
   }
