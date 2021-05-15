@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { Form, Formik } from 'formik'
-import { useRouter } from 'next/dist/client/router'
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import SubmitButtonCP from '../../../common/components/fields/submit-button/SubmitButtonCP'
 import TextInputCP from '../../../common/components/fields/text-input/TextInputCP'
+import createNotification from '../../../common/components/notification/createNotification'
+import { NotificationTypeEnum } from '../../../common/components/notification/enums/NotificationTypeEnum'
+import { GlobalContext } from '../../../common/context/GlobalContext'
 import { IAuthRequestDTO } from '../../../interfaces/dtos/request/IAuthRequestDTO'
 import { LoginFormValidator } from './validators/LoginFormValidator'
 
@@ -16,13 +18,29 @@ const INITIAL_VALUES: IAuthRequestDTO = { email: '', senha: '' }
  * @returns JSX.Element
  */
 export default function LoginFormCP(): JSX.Element {
-  const router = useRouter()
+  const globalContext = useContext(GlobalContext)
 
   async function onSubmitForm(values: IAuthRequestDTO): Promise<void> {
-    const response = await axios.post('/usuario/autenticar', values)
-    console.log('data', response)
-
-    router.replace('/home')
+    axios
+      .post('/usuario/autenticar', values)
+      .then(request => {
+        if (request.status === 200) {
+          globalContext.login(request.data)
+          return createNotification({
+            type: NotificationTypeEnum.success,
+            title: `Ooi ${request.data.nome} como tem sido as coisas?`,
+            description: 'Já sabe o que vai assistir hoje?'
+          })
+        }
+      })
+      .catch(error => {
+        createNotification({
+          type: NotificationTypeEnum.error,
+          title: 'Ops!',
+          description: 'Tivemos algum erro para identificar o seu usuário'
+        })
+        return console.log(`>>> ERRO: ${error}`)
+      })
   }
 
   return (
