@@ -4,10 +4,9 @@ import TextCP from '../../../common/components/text/TextCP'
 import HintoTextCP from '../../../common/components/hinto-text/HintoTextCP'
 import LandingMovieCardCP from '../landing-movie-card/LandingMovieCardCP'
 import LandingTopTextCP from '../landing-top-text/LandingTopTextCP'
-import { LandingScreenContentMock } from '../../../mocks/LandingScreenContentMock'
 import { ILandingScreenResponseDTO } from '../../../interfaces/dtos/response/ILandingScreenResponseDTO'
 
-const MOCK: ILandingScreenResponseDTO[] = LandingScreenContentMock
+const MOCK: ILandingScreenResponseDTO[] = []
 
 /**
  * Conteúdo da tela de apresentação do sistema
@@ -27,9 +26,9 @@ export default function LandingScreenContentCP(): JSX.Element {
       <MainCardWrapperSCP>
         <LandingMovieCardCP
           main={true}
-          synopsis={MOCK[0].synopsis}
-          movieTitle={MOCK[0].movieTitle}
-          urlImage={MOCK[0].urlImage}
+          synopsis={MOCK[0]?.synopsis}
+          movieTitle={MOCK[0]?.movieTitle}
+          urlImage={MOCK[0]?.urlImage}
         />
       </MainCardWrapperSCP>
 
@@ -50,21 +49,21 @@ export default function LandingScreenContentCP(): JSX.Element {
 
         <DefaultCardsWrapperSCP>
           <LandingMovieCardCP
-            synopsis={MOCK[1].synopsis}
-            movieTitle={MOCK[1].movieTitle}
-            urlImage={MOCK[1].urlImage}
+            synopsis={MOCK[1]?.synopsis}
+            movieTitle={MOCK[1]?.movieTitle}
+            urlImage={MOCK[1]?.urlImage}
           />
 
           <LandingMovieCardCP
-            synopsis={MOCK[2].synopsis}
-            movieTitle={MOCK[2].movieTitle}
-            urlImage={MOCK[2].urlImage}
+            synopsis={MOCK[2]?.synopsis}
+            movieTitle={MOCK[2]?.movieTitle}
+            urlImage={MOCK[2]?.urlImage}
           />
 
           <LandingMovieCardCP
-            synopsis={MOCK[3].synopsis}
-            movieTitle={MOCK[3].movieTitle}
-            urlImage={MOCK[3].urlImage}
+            synopsis={MOCK[3]?.synopsis}
+            movieTitle={MOCK[3]?.movieTitle}
+            urlImage={MOCK[3]?.urlImage}
           />
         </DefaultCardsWrapperSCP>
       </RightWrapperAreaSCP>

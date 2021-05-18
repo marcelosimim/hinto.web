@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PaginationCP from '../../../../../../common/components/pagination/PaginationCP'
 import { IMyListTabResponseDTO as IRecommendationsTabResponseDTO } from '../../../../../../interfaces/dtos/response/IMyListTabResponseDTO'
-import { MyListTabMock } from '../../../../../../mocks/MyListTabMock'
 import HomeMovieCardCP from '../../../../home-movie-card/HomeMovieCardCP'
 
-const MOCK: IRecommendationsTabResponseDTO = MyListTabMock
+const MOCK: IRecommendationsTabResponseDTO = { list: [], total: 0 }
 const PAGE_SIZE = 10 /** A tela não está necessáriamente preparada para alterações nesta constante */
 
 /**

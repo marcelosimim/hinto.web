@@ -4,10 +4,9 @@ import styled from 'styled-components'
 import PaginationCP from '../../../../../../common/components/pagination/PaginationCP'
 import { GlobalContext } from '../../../../../../common/context/GlobalContext'
 import { IMyListTabResponseDTO } from '../../../../../../interfaces/dtos/response/IMyListTabResponseDTO'
-import { MyListTabMock } from '../../../../../../mocks/MyListTabMock'
 import HomeMovieCardCP from '../../../../home-movie-card/HomeMovieCardCP'
 
-const MOCK: IMyListTabResponseDTO = MyListTabMock
+const MOCK: IMyListTabResponseDTO = { list: [], total: 0 }
 const PAGE_SIZE = 10 /** A tela não está necessáriamente preparada para alterações nesta constante */
 
 /**
