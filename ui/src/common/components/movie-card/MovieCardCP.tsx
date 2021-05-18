@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Image } from 'antd'
+import { Image, Spin } from 'antd'
 import CardCP from '../../../common/components/card/CardCP'
 import Meta from 'antd/lib/card/Meta'
 
@@ -9,6 +9,7 @@ interface IMovieCardCPProps {
   movieTitle: string
   synopsis: string
   movieID?: number
+  loading?: boolean
   enablePreview?: boolean
   cardStyle?: React.CSSProperties
   imageStyle?: React.CSSProperties
@@ -37,16 +38,24 @@ export default function MovieCardCP(props: IMovieCardCPProps): JSX.Element {
         hoverable={true}
         style={props.cardStyle}
         onClick={onClickMainWrapperLandingCard}
+        loading={props.loading}
         cover={
-          <Image
-            style={props.imageStyle}
-            src={props.urlImage}
-            alt={`${props.movieTitle}-img`}
-            preview={props.enablePreview}
-          />
+          props.loading ? (
+            <Spin style={props.imageStyle} />
+          ) : (
+            <Image
+              style={props.imageStyle}
+              src={props.urlImage}
+              alt={`${props.movieTitle}-img`}
+              preview={props.enablePreview}
+            />
+          )
         }
       >
-        <Meta title={props.movieTitle} description={props.synopsis} />
+        <Meta
+          title={props.movieTitle}
+          description={props.synopsis.substring(0, 150)}
+        />
       </CardCP>
     </MainWrapperLandingCardSCP>
   )
@@ -55,5 +64,8 @@ export default function MovieCardCP(props: IMovieCardCPProps): JSX.Element {
 const MainWrapperLandingCardSCP = styled.div`
   .ant-image {
     margin-left: 1px;
+  }
+  .ant-spin-dot-spin {
+    margin-top: 50%;
   }
 `

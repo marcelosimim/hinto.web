@@ -2,10 +2,11 @@ import React from 'react'
 import MovieCardCP from '../../../common/components/movie-card/MovieCardCP'
 
 interface ILandingMovieCardCPProps {
-  urlImage: string
-  movieTitle: string
-  synopsis: string
+  urlImage?: string
+  movieTitle?: string
+  synopsis?: string
   main?: boolean
+  loading?: boolean
 }
 
 /**
@@ -20,6 +21,7 @@ export default function LandingMovieCardCP(
     <MovieCardCP
       movieTitle={props.movieTitle}
       synopsis={props.synopsis}
+      loading={props.loading}
       urlImage={props.urlImage}
       imageStyle={
         props.main

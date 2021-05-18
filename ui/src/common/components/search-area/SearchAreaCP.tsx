@@ -5,6 +5,7 @@ import styled from 'styled-components'
 interface ISearchAreaCPProps {
   placeholder: string
   disable?: boolean
+  loading?: boolean
   onSearch?: (value: string) => void
 }
 
@@ -19,6 +20,7 @@ export default function SearchAreaCP(props: ISearchAreaCPProps): JSX.Element {
       <Search
         disabled={props.disable}
         placeholder={props.placeholder}
+        loading={props.loading}
         onSearch={props.onSearch && props.onSearch}
         allowClear={false}
       />
