@@ -1,7 +1,10 @@
 import { Col, Row } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
+import createNotification from '../../../../../../common/components/notification/createNotification'
+import { NotificationTypeEnum } from '../../../../../../common/components/notification/enums/NotificationTypeEnum'
 import PaginationCP from '../../../../../../common/components/pagination/PaginationCP'
+import { GlobalContext } from '../../../../../../common/context/GlobalContext'
 import { IMyListTabResponseDTO as IRecommendationsTabResponseDTO } from '../../../../../../interfaces/dtos/response/IMyListTabResponseDTO'
 import HomeMovieCardCP from '../../../../home-movie-card/HomeMovieCardCP'
 
@@ -19,27 +22,54 @@ const PAGE_SIZE = 10 /** A tela não está necessáriamente preparada para alter
  * semelhante.
  */
 export default function RecommendationsTabCP(): JSX.Element {
-  useEffect(whenRender, [])
+  const globalContext = useContext(GlobalContext)
   const [listOfCards, setListOfCards] = useState([])
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect( () => {
+    whenRender();
+
+  }, [])
+
+  async function whenRender(): Promise<void> {
+    globalContext.axiosRecommendation
+    .get(`/recommendation/${globalContext.authUser.id}`)
+    .then(request => {
+      console.log(request)
+      if (request.status === 200) {
+        setListOfCards(
+          request.data.map((currentMovie, index) => (
+            <Col className={'gutter-row'} key={index}>
+              <HomeMovieCardCP
+                movieID={currentMovie.id}
+                urlImage={currentMovie.imagemURL}
+                movieTitle={currentMovie.titulo}
+                synopsis={currentMovie.sinopse}
+                onClick={openMovieDetailsModal}
+              />
+            </Col>
+          ))
+        )
+      }
+      setLoading(false);
+    })
+    .catch(error => {
+      createNotification({
+        type: NotificationTypeEnum.error,
+        title: 'Ops!',
+        description: 'Tivemos algum erro ao procurar recomendações.'
+      })
+      return console.log(`>>> ERRO: ${error}`)
+    })
+    
+  }
+
+  if (isLoading) {
+    return <div className="App"></div>;
+  }
 
   function openMovieDetailsModal(movieID: number): void {
     console.log('movieID', movieID)
-  }
-
-  function whenRender(): void {
-    setListOfCards(
-      MOCK.list.map((currentMovie, index) => (
-        <Col className={'gutter-row'} key={index}>
-          <HomeMovieCardCP
-            movieID={currentMovie.id}
-            urlImage={currentMovie.urlImage}
-            movieTitle={currentMovie.title}
-            synopsis={currentMovie.synopsis}
-            onClick={openMovieDetailsModal}
-          />
-        </Col>
-      ))
-    )
   }
 
   function onChange(value): void {
