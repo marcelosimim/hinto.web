@@ -61,7 +61,7 @@ export default function IMyListResponseDTOMyListTabCP(): JSX.Element {
         createNotification({
           type: NotificationTypeEnum.error,
           title: 'Ops!',
-          description: 'Tivemos algum erro ao procurar recomendações.'
+          description: 'Tivemos algum erro ao procurar sua lista de filmes.'
         })
         return console.log(`>>> ERRO: ${error}`)
       })
