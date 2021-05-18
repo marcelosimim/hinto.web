@@ -2,28 +2,24 @@ import Search from 'antd/lib/input/Search'
 import React from 'react'
 import styled from 'styled-components'
 
-interface ISearchFieldICPProps {
+interface ISearchAreaCPProps {
   placeholder: string
   disable?: boolean
+  onSearch?: (value: string) => void
 }
 
 /**
- * Abstrai a criação de um campo de busca personalizado para a tab de search
+ * Abstrai a criação de um campo de busca personalizado
  * @author rafaelvictor01
  * @returns JSX.Element
  */
-export default function SearchFieldICP(
-  props: ISearchFieldICPProps
-): JSX.Element {
-  function onSearch(value: string): void {
-    console.log(value, 'implementar o serviço de pesquisa')
-  }
+export default function SearchAreaCP(props: ISearchAreaCPProps): JSX.Element {
   return (
     <MainWrapperSearchFieldICP>
       <Search
         disabled={props.disable}
         placeholder={props.placeholder}
-        onSearch={onSearch}
+        onSearch={props.onSearch && props.onSearch}
         allowClear={false}
       />
     </MainWrapperSearchFieldICP>

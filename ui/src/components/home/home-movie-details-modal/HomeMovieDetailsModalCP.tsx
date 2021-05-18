@@ -3,9 +3,6 @@ import styled from 'styled-components'
 import ButtonCP from '../../../common/components/button/ButtonCP'
 import ModalCP from '../../../common/components/modal/ModalCP'
 import { GlobalContext } from '../../../common/context/GlobalContext'
-import { IHomeScreenMovieDetailModalResponseDTO } from '../../../interfaces/dtos/response/IHomeScreenMovieDetailModalResponseDTO'
-import { HomeScreenMovieDetailModalMock } from '../../../mocks/HomeScreenModalMock'
-import HomeMovieDetailsModalContentCP from './home-movie-details-modal-content/HomeMovieDetailsModalContentCP'
 
 /**
  * Agrupa todo o conteúdo referente ao modal que permite o usuário observar detalhes de um filme na
@@ -16,7 +13,6 @@ import HomeMovieDetailsModalContentCP from './home-movie-details-modal-content/H
  */
 export default function HomeMovieDetailsModalCP(): JSX.Element {
   const globalContext = useContext(GlobalContext)
-  const MOCK: IHomeScreenMovieDetailModalResponseDTO = HomeScreenMovieDetailModalMock
   return (
     <MainWrapperHomeMovieDetailsModalSCP>
       <ModalCP
@@ -59,9 +55,10 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
           </FooterWrapperSCP>
         ]}
         width={750}
-        title={`Confira os detalhes de ${MOCK.movieTitle}`}
+        // title={`Confira os detalhes de ${MOCK.titulo}`}
       >
-        <HomeMovieDetailsModalContentCP {...MOCK} />
+        {/* <HomeMovieDetailsModalContentCP {...MOCK} /> */}
+        <></>
       </ModalCP>
     </MainWrapperHomeMovieDetailsModalSCP>
   )

@@ -8,7 +8,6 @@ import axios from 'axios'
 import createNotification from '../../../common/components/notification/createNotification'
 import { NotificationTypeEnum } from '../../../common/components/notification/enums/NotificationTypeEnum'
 import { GlobalContext } from '../../../common/context/GlobalContext'
-
 /**
  * Conteúdo da tela de apresentação do sistema
  *

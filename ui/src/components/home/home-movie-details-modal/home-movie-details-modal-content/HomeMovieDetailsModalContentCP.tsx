@@ -1,12 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Image } from 'antd'
-import { IHomeScreenMovieDetailModalResponseDTO } from '../../../../interfaces/dtos/response/IHomeScreenMovieDetailModalResponseDTO'
+import { IMovieResponseDTO } from '../../../../interfaces/dtos/response/IMovieResponseDTO'
 import TextCP from '../../../../common/components/text/TextCP'
-import { TextCPTypesEnum } from '../../../../common/components/text/enums/TextCPTypesEnum'
 
+/**
+ * @todo Esse componente precisa de revisão urgente !!!
+ * @author rafaelvictor01
+ * @param props IMovieResponseDTO
+ * @returns JSX.Element
+ */
 export default function HomeMovieDetailsModalContentCP(
-  props: IHomeScreenMovieDetailModalResponseDTO
+  props: IMovieResponseDTO
 ): JSX.Element {
   return (
     <MainWrapperHomeMovieDetailsModalContentSCP>
@@ -14,29 +19,24 @@ export default function HomeMovieDetailsModalContentCP(
         <Image
           height={350}
           width={290}
-          title={props.movieTitle}
-          src={props.urlImage}
-          alt={`${props.movieTitle}-img`}
+          title={props.titulo}
+          src={props.imagemURL}
+          alt={`${props.titulo}-img`}
         />
         <TextWrapperSCP>
-          <TextCP content={props.movieTitle} />
+          <TextCP content={props.titulo} />
         </TextWrapperSCP>
       </ImageAreaWrapperSCP>
       <SynopsisAreaWrapperSCP>
         <TextWrapperSCP>
-          <TextCP content={props.synopsis} />
+          <TextCP content={props.sinopse} />
         </TextWrapperSCP>
         <TextWrapperSCP>
           <TextCP
-            content={`Quantas pessoas já AMAM este filme: ${props.likes}`}
-            type={TextCPTypesEnum.danger}
-          />
-          <TextCP
-            content={`Atores: ${props.actors.map(currentActor => {
-              return ' ' + currentActor
+            content={`Produtores: ${props.produtores.map(currentPerson => {
+              return ' ' + currentPerson.nome
             })}`}
           />
-          <TextCP content={`Diretor: ${props.director}`} />
         </TextWrapperSCP>
       </SynopsisAreaWrapperSCP>
     </MainWrapperHomeMovieDetailsModalContentSCP>
