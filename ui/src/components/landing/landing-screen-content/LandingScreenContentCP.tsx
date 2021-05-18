@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import TextCP from '../../../common/components/text/TextCP'
 import HintoTextCP from '../../../common/components/hinto-text/HintoTextCP'
 import LandingMovieCardCP from '../landing-movie-card/LandingMovieCardCP'
 import LandingTopTextCP from '../landing-top-text/LandingTopTextCP'
-import { LandingScreenContentMock } from '../../../mocks/LandingScreenContentMock'
-import { ILandingScreenResponseDTO } from '../../../interfaces/dtos/response/ILandingScreenResponseDTO'
-
-const MOCK: ILandingScreenResponseDTO[] = LandingScreenContentMock
+import axios from 'axios'
+import createNotification from '../../../common/components/notification/createNotification'
+import { NotificationTypeEnum } from '../../../common/components/notification/enums/NotificationTypeEnum'
+import { GlobalContext } from '../../../common/context/GlobalContext'
 
 /**
  * Conteúdo da tela de apresentação do sistema
@@ -18,6 +18,37 @@ const MOCK: ILandingScreenResponseDTO[] = LandingScreenContentMock
  * @returns JSX.Element
  */
 export default function LandingScreenContentCP(): JSX.Element {
+  const globalContext = useContext(GlobalContext)
+  
+  const [movieList, setMovieList] = useState([])
+  const [isLoading, setLoading] = useState(true)
+  useEffect( () => {
+     onMount();
+
+  }, [])
+  async function onMount(): Promise<void> {
+
+    globalContext.axiosRecommendation
+      .get('/top')
+      .then(request => {
+        console.log(request)
+        if (request.status === 200) {
+          setMovieList(request.data)
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        createNotification({
+          type: NotificationTypeEnum.error,
+          title: 'Ops!',
+          description: 'Tivemos algum erro ao procurar recomendações.'
+        })
+        return console.log(`>>> ERRO: ${error}`)
+      })
+  }
+  if (isLoading) {
+    return <div className="App"></div>;
+  }
   return (
     <MainWrapperLandingScreenContentSCP>
       <LandingTopTextSCP>
@@ -27,9 +58,9 @@ export default function LandingScreenContentCP(): JSX.Element {
       <MainCardWrapperSCP>
         <LandingMovieCardCP
           main={true}
-          synopsis={MOCK[0].synopsis}
-          movieTitle={MOCK[0].movieTitle}
-          urlImage={MOCK[0].urlImage}
+          synopsis={movieList[0].sinopse}
+          movieTitle={movieList[0].titulo}
+          urlImage={movieList[0].imagemURL}
         />
       </MainCardWrapperSCP>
 
@@ -50,21 +81,21 @@ export default function LandingScreenContentCP(): JSX.Element {
 
         <DefaultCardsWrapperSCP>
           <LandingMovieCardCP
-            synopsis={MOCK[1].synopsis}
-            movieTitle={MOCK[1].movieTitle}
-            urlImage={MOCK[1].urlImage}
+            synopsis={movieList[1].sinopse}
+            movieTitle={movieList[1].titulo}
+            urlImage={movieList[1].imagemURL}
           />
 
           <LandingMovieCardCP
-            synopsis={MOCK[2].synopsis}
-            movieTitle={MOCK[2].movieTitle}
-            urlImage={MOCK[2].urlImage}
+            synopsis={movieList[2].sinopse}
+            movieTitle={movieList[2].titulo}
+            urlImage={movieList[2].imagemURL}
           />
 
           <LandingMovieCardCP
-            synopsis={MOCK[3].synopsis}
-            movieTitle={MOCK[3].movieTitle}
-            urlImage={MOCK[3].urlImage}
+            synopsis={movieList[3].sinopse}
+            movieTitle={movieList[3].titulo}
+            urlImage={movieList[3].imagemURL}
           />
         </DefaultCardsWrapperSCP>
       </RightWrapperAreaSCP>

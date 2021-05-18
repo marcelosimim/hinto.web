@@ -1,7 +1,12 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { useRouter } from 'next/dist/client/router'
 import React, { createContext, useState } from 'react'
 import { IUserAuthResponseDTO } from '../../interfaces/dtos/response/IUserAuthResponseDTO'
+
+const axiosRecommendation = axios.create({
+  baseURL: 'https://hinto-rec.herokuapp.com/ai/',
+  timeout: 6000
+});
 
 // Definição do type personalizado do nosso contexto
 type GlobalContextTP = {
@@ -19,6 +24,9 @@ type GlobalContextTP = {
   movieIDToModal: number
   openMovieDetailsModal: (movieID: number) => void
   closeMovieDetailsModal: () => void
+  
+  /* Outros */
+  axiosRecommendation: AxiosInstance
 }
 
 // O type que acabamos de criar para o nosso contexto agora é "tratado".
@@ -67,6 +75,7 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
         setShowDrawer,
         showModal,
         movieIDToModal,
+        axiosRecommendation,
         openMovieDetailsModal,
         closeMovieDetailsModal,
         authUser,
