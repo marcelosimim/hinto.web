@@ -1,5 +1,5 @@
-import { Result } from 'antd'
 import React from 'react'
+import ResultCP from '../common/components/result/ResultCP'
 
 /**
  * Página que será exibida caso o usuário acesse uma rota inexistente
@@ -10,10 +10,9 @@ import React from 'react'
  */
 export default function PageNotFoundScreenCP(): JSX.Element {
   return (
-    <Result
+    <ResultCP
       status={'404'}
-      title={'404'}
-      subTitle={
+      description={
         'Adoramos desafios, quem sabe um dia criamos essa pagina só pra você'
       }
     />

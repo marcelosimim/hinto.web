@@ -52,7 +52,10 @@ export default function MovieCardCP(props: IMovieCardCPProps): JSX.Element {
           )
         }
       >
-        <Meta title={props.movieTitle} description={props.synopsis} />
+        <Meta
+          title={props.movieTitle}
+          description={props.synopsis.substring(0, 150)}
+        />
       </CardCP>
     </MainWrapperLandingCardSCP>
   )

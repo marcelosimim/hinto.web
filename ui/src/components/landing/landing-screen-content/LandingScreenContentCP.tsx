@@ -22,8 +22,6 @@ export default function LandingScreenContentCP(): JSX.Element {
 
   const [movieList, setMovieList] = useState([])
   const [isLoading, setLoading] = useState(true)
-  const [mainCard, setMainCard] = useState()
-  const [secondaryCards, setSecondaryCards] = useState()
 
   useEffect(() => {
     onMount()
@@ -60,7 +58,7 @@ export default function LandingScreenContentCP(): JSX.Element {
           loading={isLoading}
           movieTitle={movieList[0]?.titulo}
           urlImage={movieList[0]?.imagemURL}
-          synopsis={`${movieList[0]?.sinopse.substring(0, 150)} ...`}
+          synopsis={`${movieList[0]?.sinopse} ...`}
         />
       </MainCardWrapperSCP>
 
@@ -82,21 +80,21 @@ export default function LandingScreenContentCP(): JSX.Element {
         <DefaultCardsWrapperSCP>
           <LandingMovieCardCP
             loading={isLoading}
-            synopsis={`${movieList[1]?.sinopse.substring(0, 150)} ...`}
+            synopsis={`${movieList[1]?.sinopse} ...`}
             movieTitle={movieList[1]?.titulo}
             urlImage={movieList[1]?.imagemURL}
           />
 
           <LandingMovieCardCP
             loading={isLoading}
-            synopsis={`${movieList[2]?.sinopse.substring(0, 150)} ...`}
+            synopsis={`${movieList[2]?.sinopse} ...`}
             movieTitle={movieList[2]?.titulo}
             urlImage={movieList[2]?.imagemURL}
           />
 
           <LandingMovieCardCP
             loading={isLoading}
-            synopsis={`${movieList[3]?.sinopse.substring(0, 150)} ...`}
+            synopsis={`${movieList[3]?.sinopse} ...`}
             movieTitle={movieList[3]?.titulo}
             urlImage={movieList[3]?.imagemURL}
           />

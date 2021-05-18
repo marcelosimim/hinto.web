@@ -6,12 +6,12 @@ import { IUserAuthResponseDTO } from '../../interfaces/dtos/response/IUserAuthRe
 const axiosRecommendation = axios.create({
   baseURL: 'https://hinto-rec.herokuapp.com/ai/',
   timeout: 6000
-});
+})
 
 // Definição do type personalizado do nosso contexto
 type GlobalContextTP = {
   /** Para o controle de acesso */
-  authUser: Partial<IUserAuthResponseDTO>
+  authUser?: IUserAuthResponseDTO
   login: (user: IUserAuthResponseDTO) => void
   logout: () => void
 
@@ -24,8 +24,8 @@ type GlobalContextTP = {
   movieIDToModal: number
   openMovieDetailsModal: (movieID: number) => void
   closeMovieDetailsModal: () => void
-  
-  /* Outros */
+
+  /** Outros */
   axiosRecommendation: AxiosInstance
 }
 
@@ -46,7 +46,7 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
   const [showDrawer, setShowDrawer] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [movieIDToModal, setMovieIDToModal] = useState(null)
-  const [authUser, setAuthUser] = useState({})
+  const [authUser, setAuthUser] = useState(null)
 
   function openMovieDetailsModal(movieID: number): void {
     setShowModal(true)
@@ -64,7 +64,7 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
   }
 
   function logout(): void {
-    setAuthUser({})
+    setAuthUser(null)
     router.replace('/')
   }
 

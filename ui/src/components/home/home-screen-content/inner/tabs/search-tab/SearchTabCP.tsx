@@ -1,4 +1,4 @@
-import { Col } from 'antd'
+import { Col, Spin } from 'antd'
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
@@ -18,13 +18,16 @@ export default function SearchTabCP(): JSX.Element {
   const globalContext = useContext(GlobalContext)
 
   const [listOfCards, setListOfCards] = useState([])
+  const [loading, setLoading] = useState(false)
 
   async function onSearch(value: string): Promise<void> {
     if (!!value && value !== '') {
+      setLoading(true)
       axios
         .get(`/midia/buscar/${value}`)
         .then(request => {
           if (request.status === 200) {
+            setLoading(false)
             return setListOfCards(
               request.data.map(
                 (currentMovie: IMovieResponseDTO, index: number) => {
@@ -38,10 +41,7 @@ export default function SearchTabCP(): JSX.Element {
                           onClick={(movieID: number) =>
                             globalContext.openMovieDetailsModal(movieID)
                           }
-                          synopsis={`${currentMovie.sinopse.substring(
-                            0,
-                            150
-                          )} ...`}
+                          synopsis={`${currentMovie.sinopse} ...`}
                         />
                       </Col>
                     )
@@ -53,6 +53,7 @@ export default function SearchTabCP(): JSX.Element {
           }
         })
         .catch(error => {
+          setLoading(false)
           createNotification({
             type: NotificationTypeEnum.error,
             title: 'Ops!',
@@ -68,8 +69,9 @@ export default function SearchTabCP(): JSX.Element {
       <SearchAreaCP
         placeholder={'Busque pelo seu filme favorito'}
         onSearch={onSearch}
+        loading={loading}
       />
-      <CardsWrapperSCP>{listOfCards}</CardsWrapperSCP>
+      {loading ? <Spin /> : <CardsWrapperSCP>{listOfCards}</CardsWrapperSCP>}
     </MainWrapperSearchTabSCP>
   )
 }
@@ -78,6 +80,13 @@ const MainWrapperSearchTabSCP = styled.div`
   align-content: center;
   .ant-card-meta {
     margin: -15px 0;
+  }
+  .ant-spin-spinning {
+    position: static;
+    display: flex;
+    justify-content: center;
+    margin-top: 18%;
+    opacity: 1;
   }
 `
 const CardsWrapperSCP = styled.div`

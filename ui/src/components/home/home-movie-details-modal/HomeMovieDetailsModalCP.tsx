@@ -57,7 +57,7 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
         width={750}
         // title={`Confira os detalhes de ${MOCK.titulo}`}
       >
-        {/* <HomeMovieDetailsModalContentCP {...MOCK} /> */}
+        {/* <HomeMovieDetailsModalContentCP /> */}
         <></>
       </ModalCP>
     </MainWrapperHomeMovieDetailsModalSCP>
