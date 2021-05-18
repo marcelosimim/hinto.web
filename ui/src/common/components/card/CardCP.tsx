@@ -5,6 +5,7 @@ import styled from 'styled-components'
 interface ICardCPProps {
   children: JSX.Element | string
   style?: React.CSSProperties
+  loading?: boolean
   hoverable?: boolean
   cover?: JSX.Element
   onClick?: () => void
@@ -30,6 +31,7 @@ export default function CardCP(props: ICardCPProps): JSX.Element {
         hoverable={props.hoverable}
         cover={props.cover}
         onClick={props.onClick}
+        loading={props.loading}
       >
         {props.children}
       </Card>
