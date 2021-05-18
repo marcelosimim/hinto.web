@@ -6,7 +6,7 @@ import * as Yup from 'yup'
  * @author rafaelvictor01
  */
 export const DrawerFormValidator = Yup.object().shape({
-  newPassword: Yup.string().required('Insira uma senha').max(75),
+  newPassword: Yup.string().max(75).required('Insira uma senha'),
   confirmNewPassword: Yup.string()
     .oneOf(
       [Yup.ref('newPassword'), null],

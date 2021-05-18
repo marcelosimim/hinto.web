@@ -20,8 +20,8 @@ export default function HomeProfileDrawerCP(): JSX.Element {
         title={'Configurações de perfil'}
       >
         <HomeProfileDrawerContentCP
-          userName={'Esse é o melhor userName'}
-          userEmail={'Esse é o melhor userEmail'}
+          userName={globalContext.authUser.nome}
+          userEmail={globalContext.authUser.email}
         />
       </DrawerCP>
     </MainWrapperHomeProfileDrawerSCP>

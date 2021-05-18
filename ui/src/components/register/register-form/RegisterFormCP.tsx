@@ -27,6 +27,7 @@ const INITIAL_VALUES: IRegisterForm = {
  * @author rafaelvictor01
  * @returns JSX.Element
  */
+
 export default function RegisterFormCP(): JSX.Element {
   const globalContext = useContext(GlobalContext)
 

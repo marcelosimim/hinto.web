@@ -1,10 +1,15 @@
+import axios from 'axios'
 import { Form, Formik } from 'formik'
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import DatepickerCP from '../../../../common/components/fields/datepicker/DatepickerCP'
 import GenderpickerCP from '../../../../common/components/fields/genderpicker/GenderpickerCP'
 import SubmitButtonCP from '../../../../common/components/fields/submit-button/SubmitButtonCP'
 import TextInputCP from '../../../../common/components/fields/text-input/TextInputCP'
+import createNotification from '../../../../common/components/notification/createNotification'
+import { NotificationTypeEnum } from '../../../../common/components/notification/enums/NotificationTypeEnum'
+import { GlobalContext } from '../../../../common/context/GlobalContext'
+import { IUpdateUserRequestDTO } from '../../../../interfaces/dtos/request/IUpdateUserRequestDTO'
 import { IHomePageForm } from '../../../../interfaces/IHomePageForm'
 import { DrawerFormValidator } from './validators/HomeProfileDrawerFormValidator'
 
@@ -18,18 +23,67 @@ const INITIAL_VALUES: IHomePageForm = {
 /**
  * Cria dentro do drawer o formulário para o usuário poder alterar alguns dados da sua conta
  * @author rafaelvictor01
+ * @author marcelosimim
  * @returns JSX.Element
  */
 export default function HomeProfileDrawerFormCP(): JSX.Element {
-  function onSubmitForm(values: IHomePageForm): void {
-    console.log('onSubmit', values)
+  const globalContext = useContext(GlobalContext)
+
+  async function onSubmitForm(values: IHomePageForm): Promise<void> {
+    const DTO: IUpdateUserRequestDTO = {
+      senha: values.newPassword,
+      dataNascimento: values.birthDate.toLocaleString('pt-BR'),
+      sexo: values.gender
+    }
+    axios
+      .put(`/usuario/${globalContext.authUser.id}`, DTO)
+      .then(request => {
+        console.log(request)
+        if (request.status === 200) {
+          return createNotification({
+            type: NotificationTypeEnum.success,
+            title: `${request.data.nome}, dados atualizados!`
+          })
+        }
+      })
+      .catch(error => {
+        createNotification({
+          type: NotificationTypeEnum.error,
+          title: 'Ops!',
+          description: 'Tivemos algum erro para alterar os dados.'
+        })
+        return console.log(`>>> ERRO: ${error}`)
+      })
   }
+  /* async function onSubmitForm(values: IAuthRequestDTO): Promise<void> {
+    axios
+      .post('/usuario/autenticar', values)
+      .then(request => {
+        if (request.status === 200) {
+          globalContext.login(request.data)
+          return createNotification({
+            type: NotificationTypeEnum.success,
+            title: `Ooi ${request.data.nome} como tem sido as coisas?`,
+            description: 'Já sabe o que vai assistir hoje?'
+          })
+        }
+      })
+      .catch(error => {
+        createNotification({
+          type: NotificationTypeEnum.error,
+          title: 'Ops!',
+          description: 'Tivemos algum erro para identificar o seu usuário'
+        })
+        return console.log(`>>> ERRO: ${error}`)
+      })
+  } */
+
   return (
     <Formik
-      validateOnMount
+      // validateOnMount
+      initialValues={INITIAL_VALUES}
       onSubmit={onSubmitForm}
       validationSchema={DrawerFormValidator}
-      initialValues={INITIAL_VALUES}
     >
       {({ values, handleChange, handleBlur }) => (
         <Form>

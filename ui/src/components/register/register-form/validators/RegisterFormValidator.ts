@@ -9,16 +9,13 @@ import { GenderEnum } from '../../../../common/enums/GenderEnum'
  */
 export const RegisterFormValidator = Yup.object().shape({
   userName: Yup.string().required('Insira um nome de usuário').max(75),
-  email: Yup.string().email().required('Insira um email válido').max(125),
-  password: Yup.string().required('Insira uma senha').max(75),
+  email: Yup.string().email('Insira um email válido').required().max(125),
+  password: Yup.string().required('Password is required'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Password confirm is required'),
   birthDate: Yup.date().required('Insira uma data'),
   gender: Yup.mixed<GenderEnum>()
     .oneOf(Object.values(GenderEnum))
-    .required('Escolha uma opção'),
-  confirmPassword: Yup.string()
-    .oneOf(
-      [Yup.ref('password'), null],
-      'A confirmação não corresponde a senha inserida'
-    )
-    .required('Confirme a senha inserida')
+    .required('Escolha uma opção')
 })
