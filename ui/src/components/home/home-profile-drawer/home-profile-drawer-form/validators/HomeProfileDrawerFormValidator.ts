@@ -6,15 +6,13 @@ import * as Yup from 'yup'
  * @author rafaelvictor01
  */
 export const DrawerFormValidator = Yup.object().shape({
-  newPassword: Yup.string(),
+  newPassword: Yup.string().required('Insira uma senha').max(75),
   confirmNewPassword: Yup.string()
-    .oneOf([Yup.ref('password')], 'Password must match')
-    .required(),
-  birthDate: Yup.date().required(),
-  gender: Yup.string()
-  /*
-    Videos de validação da confirmação da senha:
-    https://youtu.be/yTQcsmagl1I?t=213
-    https://youtu.be/dUZdvXrxj-U?t=1023
-    */
+    .oneOf(
+      [Yup.ref('newPassword'), null],
+      'A confirmação não corresponde a senha inserida'
+    )
+    .required('Confirme a senha inserida')
+  // birthDate: Yup.date().required(),
+  // gender: Yup.mixed<GenderEnum>().oneOf(Object.values(GenderEnum)).required()
 })

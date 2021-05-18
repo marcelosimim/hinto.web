@@ -5,23 +5,23 @@ import DatepickerCP from '../../../../common/components/fields/datepicker/Datepi
 import GenderpickerCP from '../../../../common/components/fields/genderpicker/GenderpickerCP'
 import SubmitButtonCP from '../../../../common/components/fields/submit-button/SubmitButtonCP'
 import TextInputCP from '../../../../common/components/fields/text-input/TextInputCP'
+import { IHomePageForm } from '../../../../interfaces/IHomePageForm'
 import { DrawerFormValidator } from './validators/HomeProfileDrawerFormValidator'
 
-const INITIAL_VALUES = {
+const INITIAL_VALUES: IHomePageForm = {
   newPassword: '',
   confirmNewPassword: '',
-  birthDate: '',
-  gender: ''
+  birthDate: null,
+  gender: null
 }
 
 /**
  * Cria dentro do drawer o formulário para o usuário poder alterar alguns dados da sua conta
  * @author rafaelvictor01
  * @returns JSX.Element
- * @todo descobrir como fazer o SubmitButtonCP funcionar mesmo estando dentro de uma styled div (importante!). vai ser usado na tela de cadastro tbm
  */
 export default function HomeProfileDrawerFormCP(): JSX.Element {
-  function onSubmitForm(values): void {
+  function onSubmitForm(values: IHomePageForm): void {
     console.log('onSubmit', values)
   }
   return (
@@ -39,7 +39,7 @@ export default function HomeProfileDrawerFormCP(): JSX.Element {
                 name={'newPassword'}
                 type={'password'}
                 label={'Nova senha'}
-                value={values.password}
+                value={values.newPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -49,7 +49,7 @@ export default function HomeProfileDrawerFormCP(): JSX.Element {
                 name={'confirmNewPassword'}
                 type={'password'}
                 label={'Confirme a nova senha'}
-                value={values.confirmPassword}
+                value={values.confirmNewPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -58,7 +58,7 @@ export default function HomeProfileDrawerFormCP(): JSX.Element {
               <DatepickerCP
                 name={'birthDate'}
                 label={'Data de nascimento'}
-                onChange={handleChange}
+                // onChange={handleChange}
               />
             </BirthDateGridWrapperSCP>
             <GenderGridWrapperSCP>

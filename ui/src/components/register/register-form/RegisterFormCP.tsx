@@ -6,12 +6,12 @@ import DatepickerCP from '../../../common/components/fields/datepicker/Datepicke
 import GenderpickerCP from '../../../common/components/fields/genderpicker/GenderpickerCP'
 import SubmitButtonCP from '../../../common/components/fields/submit-button/SubmitButtonCP'
 import TextInputCP from '../../../common/components/fields/text-input/TextInputCP'
+import createNotification from '../../../common/components/notification/createNotification'
 import { NotificationTypeEnum } from '../../../common/components/notification/enums/NotificationTypeEnum'
 import { GlobalContext } from '../../../common/context/GlobalContext'
 import { ICreateUserRequestDTO } from '../../../interfaces/dtos/request/ICreateUserRequestDTO'
 import { IRegisterForm } from '../../../interfaces/IRegisterForm'
 import { RegisterFormValidator } from './validators/RegisterFormValidator'
-import createNotification from '../../../common/components/notification/createNotification'
 
 const INITIAL_VALUES: IRegisterForm = {
   userName: '',
