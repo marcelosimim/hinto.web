@@ -1,3 +1,4 @@
+
 import { Col, Spin } from 'antd'
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
@@ -5,6 +6,7 @@ import styled from 'styled-components'
 import EmptyCP from '../../../../../../common/components/empty/EmptyCP'
 import createNotification from '../../../../../../common/components/notification/createNotification'
 import { NotificationTypeEnum } from '../../../../../../common/components/notification/enums/NotificationTypeEnum'
+import PaginationCP from '../../../../../../common/components/pagination/PaginationCP'
 import { GlobalContext } from '../../../../../../common/context/GlobalContext'
 import { IMovieResponseDTO } from '../../../../../../interfaces/dtos/response/IMovieResponseDTO'
 import HomeMovieCardCP from '../../../../home-movie-card/HomeMovieCardCP'
@@ -20,10 +22,11 @@ import HomeMovieCardCP from '../../../../home-movie-card/HomeMovieCardCP'
  */
 export default function IMyListResponseDTOMyListTabCP(): JSX.Element {
   const globalContext = useContext(GlobalContext)
-
+  useEffect(() => {
+    whenRender()
+  }, [])
   const [listOfCards, setListOfCards] = useState([])
   const [isLoading, setLoading] = useState(true)
-
   useEffect(() => {
     onMount()
   }, [])
@@ -65,6 +68,37 @@ export default function IMyListResponseDTOMyListTabCP(): JSX.Element {
         })
         return console.log(`>>> ERRO: ${error}`)
       })
+    }
+  async function whenRender(): Promise<void> {
+
+    axios.get(`/favoritos/${globalContext.authUser.id}`)
+    .then(request => {
+      if(request.status == 200){
+        setListOfCards(
+          request.data.map((currentMovie, index) => (
+            <Col className={'gutter-row'} key={index}>
+              <HomeMovieCardCP
+                movieID={currentMovie.id}
+                urlImage={currentMovie.imagemURL}
+                movieTitle={currentMovie.titulo}
+                synopsis={currentMovie.sinopse}
+                onClick={(id: number) =>
+                  globalContext.openMovieDetailsModal(id)
+                }
+              />
+            </Col>
+          ))
+        )
+      }
+    })
+    .catch(error => {
+      createNotification({
+        type: NotificationTypeEnum.error,
+        title: 'Ops!',
+        description: 'Tivemos algum erro para identificar o seu usuário'
+      })
+      return console.log(`>>> ERRO: ${error}`)
+    })
   }
 
   if (isLoading) {

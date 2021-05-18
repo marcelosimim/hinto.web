@@ -1,3 +1,4 @@
+
 import { Spin } from 'antd'
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
@@ -18,7 +19,6 @@ import HomeMovieDetailsModalContentCP from './home-movie-details-modal-content/H
  */
 export default function HomeMovieDetailsModalCP(): JSX.Element {
   const globalContext = useContext(GlobalContext)
-
   const [loading, setLoading] = useState(false)
   const [movieData, setMovieData] = useState()
 
@@ -48,7 +48,10 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
         })
         return console.log(`>>> ERRO: ${error}`)
       })
-  }
+    }
+    async function onRemoveMidia(){
+        //axios.put(`/favoritos/{}`);
+    }
 
   return (
     <MainWrapperHomeMovieDetailsModalSCP>
@@ -76,7 +79,7 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
             <ButtonWrapperSCP>
               <ButtonCP
                 onClick={() =>
-                  console.log('implementar o serviço de remover da lista')
+                  console.log('implementar o serviço de remover da lista ' + this)
                 }
               >
                 Remover da minha lista
