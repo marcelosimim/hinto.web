@@ -23,31 +23,31 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
   const [movieData, setMovieData] = useState()
 
   useEffect(() => {
-    getMovieDetails()
+    if (globalContext.movieIDToModal !== null) {
+      getMovieDetails()
+    }
   }, [globalContext.movieIDToModal])
 
   async function getMovieDetails(): Promise<void> {
-    if (globalContext.movieIDToModal !== undefined) {
-      setLoading(true)
-      axios
-        .get(`/midia/${globalContext.movieIDToModal}`)
-        .then(request => {
-          if (request.status === 200) {
-            setMovieData(request.data)
-          }
-          setLoading(false)
+    setLoading(true)
+    axios
+      .get(`/midia/${globalContext.movieIDToModal}`)
+      .then(request => {
+        if (request.status === 200) {
+          setMovieData(request.data)
+        }
+        setLoading(false)
+      })
+      .catch(error => {
+        setLoading(false)
+        createNotification({
+          type: NotificationTypeEnum.error,
+          title: 'Ops!',
+          description:
+            'Houve algum erro ao procurar pelos detalhes deste filme.'
         })
-        .catch(error => {
-          setLoading(false)
-          createNotification({
-            type: NotificationTypeEnum.error,
-            title: 'Ops!',
-            description:
-              'Houve algum erro ao procurar pelos detalhes deste filme.'
-          })
-          return console.log(`>>> ERRO: ${error}`)
-        })
-    }
+        return console.log(`>>> ERRO: ${error}`)
+      })
   }
 
   return (
@@ -61,7 +61,7 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
               <ButtonCP
                 onClick={() => console.log('implementar o serviço de like')}
               >
-                Like!
+                Like! ❤
               </ButtonCP>
             </ButtonWrapperSCP>
             <ButtonWrapperSCP>
@@ -71,13 +71,6 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
                 }
               >
                 Add na minha lista
-              </ButtonCP>
-            </ButtonWrapperSCP>
-            <ButtonWrapperSCP>
-              <ButtonCP
-                onClick={() => console.log('implementar o serviço de deslike')}
-              >
-                Deslike
               </ButtonCP>
             </ButtonWrapperSCP>
             <ButtonWrapperSCP>

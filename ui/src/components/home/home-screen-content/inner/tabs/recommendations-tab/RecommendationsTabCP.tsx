@@ -17,6 +17,7 @@ import HomeMovieCardCP from '../../../../home-movie-card/HomeMovieCardCP'
  */
 export default function RecommendationsTabCP(): JSX.Element {
   const globalContext = useContext(GlobalContext)
+
   const [listOfCards, setListOfCards] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -38,7 +39,9 @@ export default function RecommendationsTabCP(): JSX.Element {
                   urlImage={currentMovie.imagemURL}
                   movieTitle={currentMovie.titulo}
                   synopsis={currentMovie.sinopse}
-                  onClick={openMovieDetailsModal}
+                  onClick={(movieID: number) =>
+                    globalContext.openMovieDetailsModal(movieID)
+                  }
                 />
               </Col>
             ))
@@ -55,10 +58,6 @@ export default function RecommendationsTabCP(): JSX.Element {
         })
         return console.log(`>>> ERRO: ${error}`)
       })
-  }
-
-  function openMovieDetailsModal(movieID: number): void {
-    console.log('movieID', movieID)
   }
 
   return (
