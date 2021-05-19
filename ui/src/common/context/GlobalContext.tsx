@@ -49,7 +49,7 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
   const [showDrawer, setShowDrawer] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [movieIDToModal, setMovieIDToModal] = useState(null)
-  const [authUser, setAuthUser] = useState(getCurrentUser())
+  const [authUser, setAuthUser] = useState(getCurrentUser)
   const [currentTab, setCurrentTab] = useState('')
 
   function openMovieDetailsModal(movieID: number): void {
@@ -70,10 +70,9 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
   }
 
   function login(user: IUserAuthResponseDTO): void {
-    if (typeof window !== 'undefined') {
-     sessionStorage.setItem('currentUser', JSON.stringify(user))
-     router.replace('/home')
-    }
+    setAuthUser(user)
+    sessionStorage.setItem('currentUser', JSON.stringify(user))
+    router.replace('/home')
   }
 
   function logout(): void {

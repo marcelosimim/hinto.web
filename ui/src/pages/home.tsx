@@ -11,8 +11,8 @@ import HomeScreenContentCP from '../components/home/home-screen-content/HomeScre
  */
 export default function HomeScreenCP(): JSX.Element {
   const globalContext = useContext(GlobalContext)
-  console.log(globalContext.authUser + ' -- ')
   var user = globalContext.authUser;
+  console.log(user + ' -- ')
   if(typeof user === 'undefined'){
     return (
       <MainWrapperHomeScreenSCP>
@@ -22,7 +22,7 @@ export default function HomeScreenCP(): JSX.Element {
   }
   return (
     <MainWrapperHomeScreenSCP>
-      {globalContext.authUser !== null ? (
+      {user !== null ? (
         <HomeScreenContentCP />
       ) : (
         <ResultCP status={'403'} description={'Acesso negado'} />
