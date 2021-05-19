@@ -55,28 +55,6 @@ export default function HomeProfileDrawerFormCP(): JSX.Element {
         return console.log(`>>> ERRO: ${error}`)
       })
   }
-  /* async function onSubmitForm(values: IAuthRequestDTO): Promise<void> {
-    axios
-      .post('/usuario/autenticar', values)
-      .then(request => {
-        if (request.status === 200) {
-          globalContext.login(request.data)
-          return createNotification({
-            type: NotificationTypeEnum.success,
-            title: `Ooi ${request.data.nome} como tem sido as coisas?`,
-            description: 'Já sabe o que vai assistir hoje?'
-          })
-        }
-      })
-      .catch(error => {
-        createNotification({
-          type: NotificationTypeEnum.error,
-          title: 'Ops!',
-          description: 'Tivemos algum erro para identificar o seu usuário'
-        })
-        return console.log(`>>> ERRO: ${error}`)
-      })
-  } */
 
   return (
     <Formik
