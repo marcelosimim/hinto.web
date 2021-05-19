@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Image } from 'antd'
 import { IMovieResponseDTO } from '../../../../interfaces/dtos/response/IMovieResponseDTO'
 import TextCP from '../../../../common/components/text/TextCP'
+import Title from 'antd/lib/skeleton/Title'
 
 /**
  * @todo Esse componente precisa de revisão urgente !!!
@@ -29,6 +30,7 @@ export default function HomeMovieDetailsModalContentCP(
       </ImageAreaWrapperSCP>
       <SynopsisAreaWrapperSCP>
         <TextWrapperSCP>
+          <Title></Title>
           <TextCP content={props.sinopse} />
         </TextWrapperSCP>
         <TextWrapperSCP>
@@ -63,7 +65,6 @@ const ImageAreaWrapperSCP = styled.div`
   }
 `
 const TextWrapperSCP = styled.div`
-  border: 1px solid ${props => props.theme.colors.secondary};
   border-radius: ${props => props.theme.other.defaultBorderRadius};
   max-width: 290px;
   padding: 5px;

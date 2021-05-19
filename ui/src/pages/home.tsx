@@ -1,3 +1,4 @@
+import { Spin } from 'antd'
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import ResultCP from '../common/components/result/ResultCP'
@@ -10,6 +11,15 @@ import HomeScreenContentCP from '../components/home/home-screen-content/HomeScre
  */
 export default function HomeScreenCP(): JSX.Element {
   const globalContext = useContext(GlobalContext)
+  console.log(globalContext.authUser + ' -- ')
+  var user = globalContext.authUser;
+  if(typeof user === 'undefined'){
+    return (
+      <MainWrapperHomeScreenSCP>
+        
+      </MainWrapperHomeScreenSCP>
+    )
+  }
   return (
     <MainWrapperHomeScreenSCP>
       {globalContext.authUser !== null ? (
