@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 import { useRouter } from 'next/dist/client/router'
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { IUserAuthResponseDTO } from '../../interfaces/dtos/response/IUserAuthResponseDTO'
 
 const axiosRecommendation = axios.create({
@@ -12,6 +12,7 @@ const axiosRecommendation = axios.create({
 type GlobalContextTP = {
   /** Para o controle de acesso */
   authUser?: IUserAuthResponseDTO
+  getCurrentUser : () => IUserAuthResponseDTO
   login: (user: IUserAuthResponseDTO) => void
   logout: () => void
 
@@ -48,7 +49,7 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
   const [showDrawer, setShowDrawer] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [movieIDToModal, setMovieIDToModal] = useState(null)
-  const [authUser, setAuthUser] = useState(null)
+  const [authUser, setAuthUser] = useState(getCurrentUser)
   const [currentTab, setCurrentTab] = useState('')
 
   function openMovieDetailsModal(movieID: number): void {
@@ -61,13 +62,21 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
     setMovieIDToModal(null)
   }
 
+  function getCurrentUser() : IUserAuthResponseDTO{
+    if (typeof window !== 'undefined') {
+      return JSON.parse(window.sessionStorage.getItem('currentUser'))
+    }
+    return undefined;
+  }
+
   function login(user: IUserAuthResponseDTO): void {
     setAuthUser(user)
+    sessionStorage.setItem('currentUser', JSON.stringify(user))
     router.replace('/home')
   }
 
   function logout(): void {
-    setAuthUser(null)
+    window.sessionStorage.clear()
     router.replace('/')
   }
 
@@ -92,3 +101,4 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
     </GlobalContext.Provider>
   )
 }
+

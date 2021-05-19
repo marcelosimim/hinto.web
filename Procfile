@@ -1,1 +1,1 @@
-npm run dev
+web: cd ui && npm run dev
