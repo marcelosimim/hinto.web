@@ -1,5 +1,6 @@
 import { Spin } from 'antd'
 import axios from 'axios'
+import { useRouter } from 'next/dist/client/router'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ButtonCP from '../../../common/components/button/ButtonCP'
@@ -76,6 +77,7 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
         customFooter={[
           <FooterWrapperSCP key={1}>
             <ButtonWrapperSCP>
+<<<<<<< HEAD
               <ButtonCP onClick={() => setLike()}>Like! ❤</ButtonCP>
             </ButtonWrapperSCP>
             <ButtonWrapperSCP>
@@ -87,7 +89,22 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
               <ButtonCP onClick={() => removeFavorite()}>
                 Remover da minha lista
               </ButtonCP>
+=======
+              <ButtonCP onClick={setLike}>Like! ❤</ButtonCP>
+>>>>>>> 0bfe157191681f3315897626b1f53f3575758e27
             </ButtonWrapperSCP>
+            {globalContext.currentTab !== 'myList' && (
+              <ButtonWrapperSCP>
+                <ButtonCP onClick={setFavorite}>Add na minha lista</ButtonCP>
+              </ButtonWrapperSCP>
+            )}
+            {globalContext.currentTab === 'myList' && (
+              <ButtonWrapperSCP>
+                <ButtonCP onClick={removeFavorite}>
+                  Remover da minha lista
+                </ButtonCP>
+              </ButtonWrapperSCP>
+            )}
           </FooterWrapperSCP>
         ]}
         width={750}

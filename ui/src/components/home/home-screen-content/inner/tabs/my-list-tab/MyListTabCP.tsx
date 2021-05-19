@@ -26,6 +26,7 @@ export default function IMyListResponseDTOMyListTabCP(): JSX.Element {
 
   useEffect(() => {
     onMount()
+    globalContext.setCurrentTab('myList')
   }, [])
 
   async function onMount(): Promise<void> {

@@ -1,6 +1,6 @@
 import { Col, Spin } from 'antd'
 import axios from 'axios'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import createNotification from '../../../../../../common/components/notification/createNotification'
 import { NotificationTypeEnum } from '../../../../../../common/components/notification/enums/NotificationTypeEnum'
@@ -19,6 +19,8 @@ export default function SearchTabCP(): JSX.Element {
 
   const [listOfCards, setListOfCards] = useState([])
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => globalContext.setCurrentTab('search'), [])
 
   async function onSearch(value: string): Promise<void> {
     if (!!value && value !== '') {

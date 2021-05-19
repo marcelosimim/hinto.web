@@ -22,6 +22,7 @@ export default function RecommendationsTabCP(): JSX.Element {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    globalContext.setCurrentTab('recommendations')
     whenRender()
   }, [])
 

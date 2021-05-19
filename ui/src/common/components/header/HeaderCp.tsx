@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styled from 'styled-components'
+import { GlobalContext } from '../../context/GlobalContext'
 import { SystemRoutes } from '../../routes/SystemRoutes'
 import HeaderOptionsForUsersICP from './inner/HeaderOptionsForUsersICP'
 import HeaderOptionsWithoutLoginCP from './inner/HeaderOptionsWithoutLoginICP'
@@ -17,6 +18,7 @@ interface IHeaderCPProps {
  * @todo implementar a forma como serão as options dentro do sistema
  */
 export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
+  const globalContext = useContext(GlobalContext)
   useEffect(checkCurrentRoute, [props.currentRoute])
 
   const [
@@ -27,8 +29,8 @@ export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
   function checkCurrentRoute(): void {
     setEnableHeaderOptionsWithoutLogin(
       props.currentRoute === SystemRoutes.routeToLandingScreen ||
-        props.currentRoute === SystemRoutes.routeToLoginScreen ||
-        props.currentRoute === SystemRoutes.routeToRegisterScreen
+      props.currentRoute === SystemRoutes.routeToLoginScreen ||
+      props.currentRoute === SystemRoutes.routeToRegisterScreen
     )
   }
 
@@ -38,7 +40,7 @@ export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
         <LogoWrapper></LogoWrapper>
         <OptionsWrapper>
           {enableHeaderOptionsWithoutLogin && <HeaderOptionsWithoutLoginCP />}
-          {!enableHeaderOptionsWithoutLogin && <HeaderOptionsForUsersICP />}
+          {!enableHeaderOptionsWithoutLogin && globalContext.authUser != null && <HeaderOptionsForUsersICP />}
         </OptionsWrapper>
       </WrapperHeaderCP>
     </MainWrapperHeaderCP>
