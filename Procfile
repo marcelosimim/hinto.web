@@ -1,1 +1,1 @@
-web: cd ui && npm run dev
+frontend: sh 'cd ui && npm run dev'
