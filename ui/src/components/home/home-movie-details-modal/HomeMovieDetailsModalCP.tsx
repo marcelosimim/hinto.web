@@ -139,21 +139,7 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
         customFooter={[
           <FooterWrapperSCP key={1}>
             <ButtonWrapperSCP>
-<<<<<<< HEAD
-              <ButtonCP onClick={() => setLike()}>Like! ❤</ButtonCP>
-            </ButtonWrapperSCP>
-            <ButtonWrapperSCP>
-              <ButtonCP onClick={() => setFavorite()}>
-                Add na minha lista
-              </ButtonCP>
-            </ButtonWrapperSCP>
-            <ButtonWrapperSCP>
-              <ButtonCP onClick={() => removeFavorite()}>
-                Remover da minha lista
-              </ButtonCP>
-=======
               <ButtonCP onClick={setLike}>Like! ❤</ButtonCP>
->>>>>>> 0bfe157191681f3315897626b1f53f3575758e27
             </ButtonWrapperSCP>
             {globalContext.currentTab !== 'MINHA LISTA' && (
               <ButtonWrapperSCP>
