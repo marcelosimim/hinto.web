@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Tabs } from 'antd'
 import { ITabsChildren } from './interfaces/ITabsChildren'
+import { GlobalContext } from '../../context/GlobalContext'
 
 interface ITabsCPProps {
   tabs: ITabsChildren[]
@@ -18,13 +19,15 @@ const { TabPane } = Tabs
  * @returns JSX.Element
  */
 export default function TabsCP(props: ITabsCPProps): JSX.Element {
+  const globalContext = useContext(GlobalContext)
+
   useEffect(whenRender, [])
   const [tabItens, setTabItens] = useState([])
 
   function whenRender(): void {
     setTabItens(
-      props.tabs.map((currentChildren, index) => (
-        <TabPane tab={currentChildren.tabName} key={`${index}`}>
+      props.tabs.map(currentChildren => (
+        <TabPane tab={currentChildren.tabName} key={currentChildren.tabName}>
           {currentChildren.tabContent}
         </TabPane>
       ))
@@ -33,7 +36,10 @@ export default function TabsCP(props: ITabsCPProps): JSX.Element {
 
   return (
     <Tabs
-      defaultActiveKey={props.defaultActiveKey ? props.defaultActiveKey : '1'}
+      defaultActiveKey={
+        props.defaultActiveKey ? props.defaultActiveKey : 'MINHA LISTA'
+      }
+      onChange={(activeKey: string) => globalContext.setCurrentTab(activeKey)}
       centered
     >
       {tabItens.map(currentItem => currentItem)}

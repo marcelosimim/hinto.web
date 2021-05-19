@@ -24,12 +24,19 @@ export default function IMyListResponseDTOMyListTabCP(): JSX.Element {
   const [listOfCards, setListOfCards] = useState([])
   const [isLoading, setLoading] = useState(true)
 
+  useEffect(refreshTab, [globalContext.currentTab])
   useEffect(() => {
-    onMount()
-    globalContext.setCurrentTab('myList')
+    getMyList()
   }, [])
 
-  async function onMount(): Promise<void> {
+  function refreshTab(): void {
+    console.log('globalContext.currentTab', globalContext.currentTab)
+    if (globalContext.currentTab === 'MINHA LISTA') {
+      getMyList()
+    }
+  }
+
+  async function getMyList(): Promise<void> {
     setLoading(true)
     axios
       .get(`/favoritos/${globalContext.authUser.id}`)

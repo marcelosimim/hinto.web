@@ -21,10 +21,16 @@ export default function RecommendationsTabCP(): JSX.Element {
   const [listOfCards, setListOfCards] = useState([])
   const [loading, setLoading] = useState(false)
 
+  useEffect(refreshTab, [globalContext.currentTab])
   useEffect(() => {
-    globalContext.setCurrentTab('recommendations')
     whenRender()
   }, [])
+
+  function refreshTab(): void {
+    if (globalContext.currentTab === 'RECOMENDADOS') {
+      whenRender()
+    }
+  }
 
   async function whenRender(): Promise<void> {
     setLoading(true)

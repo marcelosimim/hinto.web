@@ -1,6 +1,5 @@
 import { Spin } from 'antd'
 import axios from 'axios'
-import { useRouter } from 'next/dist/client/router'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ButtonCP from '../../../common/components/button/ButtonCP'
@@ -51,22 +50,85 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
       })
   }
 
-  async function setFavorite(): Promise<void> {
-    axios.put(
-      `/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`
-    )
+  async function addToMyList(): Promise<void> {
+    setLoading(true)
+    axios
+      .put(
+        `/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`
+      )
+      .then(request => {
+        if (request.status === 200) {
+          createNotification({
+            type: NotificationTypeEnum.success,
+            title: 'Oba!',
+            description: 'Mídia adicionada a sua lista com sucesso 😊.'
+          })
+        }
+        setLoading(false)
+      })
+      .catch(error => {
+        setLoading(false)
+        createNotification({
+          type: NotificationTypeEnum.error,
+          title: 'Ops!',
+          description:
+            'Encontramos algum erro ao tentar adicionar esta mídia a sua lista.'
+        })
+        return console.log(`>>> ERRO: ${error}`)
+      })
   }
 
   async function removeFavorite(): Promise<void> {
-    axios.delete(
-      `/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`
-    )
+    axios
+      .delete(
+        `/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`
+      )
+      .then(request => {
+        if (request.status === 200) {
+          createNotification({
+            type: NotificationTypeEnum.success,
+            title: 'Sucesso!',
+            description: 'Mídia removida da sua lista com sucesso 😊.'
+          })
+        }
+        setLoading(false)
+      })
+      .catch(error => {
+        setLoading(false)
+        createNotification({
+          type: NotificationTypeEnum.error,
+          title: 'Ops!',
+          description:
+            'Encontramos algum erro ao tentar remover esta mídia da sua lista.'
+        })
+        return console.log(`>>> ERRO: ${error}`)
+      })
   }
 
   async function setLike(): Promise<void> {
-    axios.put(
-      `/lista/${globalContext.authUser.id}/${globalContext.movieIDToModal}`
-    )
+    axios
+      .put(
+        `/lista/${globalContext.authUser.id}/${globalContext.movieIDToModal}`
+      )
+      .then(request => {
+        if (request.status === 200) {
+          createNotification({
+            type: NotificationTypeEnum.success,
+            title: 'Oba!',
+            description: 'Mídia curtida com sucesso 😊.'
+          })
+        }
+        setLoading(false)
+      })
+      .catch(error => {
+        setLoading(false)
+        createNotification({
+          type: NotificationTypeEnum.error,
+          title: 'Ops!',
+          description: 'Encontramos algum erro ao tentar curtir esta mídia.'
+        })
+        return console.log(`>>> ERRO: ${error}`)
+      })
   }
 
   return (
@@ -93,12 +155,12 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
               <ButtonCP onClick={setLike}>Like! ❤</ButtonCP>
 >>>>>>> 0bfe157191681f3315897626b1f53f3575758e27
             </ButtonWrapperSCP>
-            {globalContext.currentTab !== 'myList' && (
+            {globalContext.currentTab !== 'MINHA LISTA' && (
               <ButtonWrapperSCP>
-                <ButtonCP onClick={setFavorite}>Add na minha lista</ButtonCP>
+                <ButtonCP onClick={addToMyList}>Add na minha lista</ButtonCP>
               </ButtonWrapperSCP>
             )}
-            {globalContext.currentTab === 'myList' && (
+            {globalContext.currentTab === 'MINHA LISTA' && (
               <ButtonWrapperSCP>
                 <ButtonCP onClick={removeFavorite}>
                   Remover da minha lista

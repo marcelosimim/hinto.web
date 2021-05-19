@@ -14,8 +14,6 @@ interface IHeaderCPProps {
  * @param props IHeaderCPProps
  * @returns JSX.Element
  * @author rafaelvictor01
- * @todo implementar a logo
- * @todo implementar a forma como serão as options dentro do sistema
  */
 export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
   const globalContext = useContext(GlobalContext)
@@ -29,8 +27,8 @@ export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
   function checkCurrentRoute(): void {
     setEnableHeaderOptionsWithoutLogin(
       props.currentRoute === SystemRoutes.routeToLandingScreen ||
-      props.currentRoute === SystemRoutes.routeToLoginScreen ||
-      props.currentRoute === SystemRoutes.routeToRegisterScreen
+        props.currentRoute === SystemRoutes.routeToLoginScreen ||
+        props.currentRoute === SystemRoutes.routeToRegisterScreen
     )
   }
 
@@ -40,7 +38,8 @@ export default function HeaderCP(props: IHeaderCPProps): JSX.Element {
         <LogoWrapper></LogoWrapper>
         <OptionsWrapper>
           {enableHeaderOptionsWithoutLogin && <HeaderOptionsWithoutLoginCP />}
-          {!enableHeaderOptionsWithoutLogin && globalContext.authUser != null && <HeaderOptionsForUsersICP />}
+          {!enableHeaderOptionsWithoutLogin &&
+            globalContext.authUser != null && <HeaderOptionsForUsersICP />}
         </OptionsWrapper>
       </WrapperHeaderCP>
     </MainWrapperHeaderCP>
