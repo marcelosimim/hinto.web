@@ -1,5 +1,6 @@
 import { Spin } from 'antd'
 import axios from 'axios'
+import { useRouter } from 'next/dist/client/router'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ButtonCP from '../../../common/components/button/ButtonCP'
@@ -50,16 +51,22 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
       })
   }
 
-  async function setFavorite(): Promise<void>{
-    axios.put(`/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`)
+  async function setFavorite(): Promise<void> {
+    axios.put(
+      `/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`
+    )
   }
 
-  async function removeFavorite(): Promise<void>{
-    axios.delete(`/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`)
+  async function removeFavorite(): Promise<void> {
+    axios.delete(
+      `/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`
+    )
   }
 
-  async function setLike(): Promise<void>{
-    axios.put(`/lista/${globalContext.authUser.id}/${globalContext.movieIDToModal}`)
+  async function setLike(): Promise<void> {
+    axios.put(
+      `/lista/${globalContext.authUser.id}/${globalContext.movieIDToModal}`
+    )
   }
 
   return (
@@ -70,32 +77,20 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
         customFooter={[
           <FooterWrapperSCP key={1}>
             <ButtonWrapperSCP>
-              <ButtonCP
-                onClick={() => 
-                  setLike()
-                }
-              >
-                Like! ❤
-              </ButtonCP>
+              <ButtonCP onClick={setLike}>Like! ❤</ButtonCP>
             </ButtonWrapperSCP>
-            <ButtonWrapperSCP>
-              <ButtonCP
-                onClick={() =>
-                  setFavorite()
-                }
-              >
-                Add na minha lista
-              </ButtonCP>
-            </ButtonWrapperSCP>
-            <ButtonWrapperSCP>
-              <ButtonCP
-                onClick={() =>
-                  removeFavorite()
-                }
-              >
-                Remover da minha lista
-              </ButtonCP>
-            </ButtonWrapperSCP>
+            {globalContext.currentTab !== 'myList' && (
+              <ButtonWrapperSCP>
+                <ButtonCP onClick={setFavorite}>Add na minha lista</ButtonCP>
+              </ButtonWrapperSCP>
+            )}
+            {globalContext.currentTab === 'myList' && (
+              <ButtonWrapperSCP>
+                <ButtonCP onClick={removeFavorite}>
+                  Remover da minha lista
+                </ButtonCP>
+              </ButtonWrapperSCP>
+            )}
           </FooterWrapperSCP>
         ]}
         width={750}

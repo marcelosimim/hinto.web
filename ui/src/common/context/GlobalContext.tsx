@@ -27,6 +27,8 @@ type GlobalContextTP = {
 
   /** Outros */
   axiosRecommendation: AxiosInstance
+  currentTab: string
+  setCurrentTab: (currentTab: string) => void
 }
 
 // O type que acabamos de criar para o nosso contexto agora é "tratado".
@@ -47,6 +49,7 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
   const [showModal, setShowModal] = useState(false)
   const [movieIDToModal, setMovieIDToModal] = useState(null)
   const [authUser, setAuthUser] = useState(null)
+  const [currentTab, setCurrentTab] = useState('')
 
   function openMovieDetailsModal(movieID: number): void {
     setShowModal(true)
@@ -80,7 +83,9 @@ export const GlobalContextProvider: React.FC = ({ children }) => {
         closeMovieDetailsModal,
         authUser,
         login,
-        logout
+        logout,
+        setCurrentTab,
+        currentTab
       }}
     >
       {children}
