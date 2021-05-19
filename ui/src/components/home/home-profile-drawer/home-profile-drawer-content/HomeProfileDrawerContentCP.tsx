@@ -39,10 +39,22 @@ export default function HomeProfileDrawerContentCP(
       </UserImageWrapperSCP>
       <HomeProfileDrawerFormCP />
       <TrashButtonsWrapperSCP>
-        <ButtonCP type={'text'} onClick={onClickDeleteAccount} danger={true}>
+        <ButtonCP
+          type={'text'}
+          onClick={onClickDeleteAccount}
+          danger={true}
+          popConfirmText={'Tem certeza que deseja excluir sua conta'}
+        >
           Excluir conta
         </ButtonCP>
-        <ButtonCP type={'text'} onClick={onClickCleanHistory} danger={true}>
+        <ButtonCP
+          type={'text'}
+          onClick={onClickCleanHistory}
+          danger={true}
+          popConfirmText={
+            'Tem certeza que deseja limpar o seu histórico de preferências'
+          }
+        >
           Limpar histórico de preferências
         </ButtonCP>
       </TrashButtonsWrapperSCP>
