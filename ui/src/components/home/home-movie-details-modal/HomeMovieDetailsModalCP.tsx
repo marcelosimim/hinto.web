@@ -50,6 +50,18 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
       })
   }
 
+  async function setFavorite(): Promise<void>{
+    axios.put(`/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`)
+  }
+
+  async function removeFavorite(): Promise<void>{
+    axios.delete(`/favoritos/${globalContext.authUser.id}/${globalContext.movieIDToModal}`)
+  }
+
+  async function setLike(): Promise<void>{
+    axios.put(`/lista/${globalContext.authUser.id}/${globalContext.movieIDToModal}`)
+  }
+
   return (
     <MainWrapperHomeMovieDetailsModalSCP>
       <ModalCP
@@ -59,7 +71,9 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
           <FooterWrapperSCP key={1}>
             <ButtonWrapperSCP>
               <ButtonCP
-                onClick={() => console.log('implementar o serviço de like')}
+                onClick={() => 
+                  setLike()
+                }
               >
                 Like! ❤
               </ButtonCP>
@@ -67,7 +81,7 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
             <ButtonWrapperSCP>
               <ButtonCP
                 onClick={() =>
-                  console.log('implementar o serviço de add na lista')
+                  setFavorite()
                 }
               >
                 Add na minha lista
@@ -76,7 +90,7 @@ export default function HomeMovieDetailsModalCP(): JSX.Element {
             <ButtonWrapperSCP>
               <ButtonCP
                 onClick={() =>
-                  console.log('implementar o serviço de remover da lista')
+                  removeFavorite()
                 }
               >
                 Remover da minha lista
